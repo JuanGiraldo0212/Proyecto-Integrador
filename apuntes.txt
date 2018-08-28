@@ -1,0 +1,15 @@
+-SKU : Codigo de productos
+-Se tienen activos 15000 productos, se tenian 40000
+-Bases de datos Hanna y SQL server (SAP Buisness One)
+-Integracion entre WMS(ware house managment system) y SAP
+-Predecir con B.I.
+-Enfocar las predicciones al call center y a los vendedores
+-Prediccion para mejorar la experiencia del cliente (Comprender sus necesidades)
+-Conexiones entre clientes similares para poder vender productos mas focalizadamente
+-Analisis de ventas para saber cuanto de un articulo es plausible vender
+-Tener en consideracion el ultimo año
+-Reportes especificos (pueden ser para grupos)
+-Analisis productos vs temporada para empresas
+-Solucion orientada a los directivos de Allers para tomar de desiciones
+-Predcion de cantidad de articulos para pedidos 
+-Tener en cuenta las limitaciones (MVP) : Producto minimo viable 
