@@ -11,5 +11,6 @@
 -Reportes especificos (pueden ser para grupos)
 -Analisis productos vs temporada para empresas
 -Solucion orientada a los directivos de Allers para tomar de desiciones
--Predcion de cantidad de articulos para pedidos 
--Tener en cuenta las limitaciones (MVP) : Producto minimo viable 
+-Prediccion de cantidad de articulos para pedidos 
+-Tener en cuenta las limitaciones (MVP) : Producto minimo viable
+-Soluciones buscadas que no satisfacen las necesidades: Software propio de reportes, adquisición de software externos
