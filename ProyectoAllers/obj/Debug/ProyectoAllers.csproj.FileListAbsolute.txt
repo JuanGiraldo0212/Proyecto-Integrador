@@ -1,0 +1,14 @@
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\ProyectoAllers.exe.config
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\ProyectoAllers.exe
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\ProyectoAllers.pdb
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\EntityFramework.dll
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\EntityFramework.xml
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.csprojAssemblyReference.cache
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.Properties.Resources.resources
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.csproj.GenerateResource.cache
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.csproj.CoreCompileInputs.cache
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.csproj.CopyComplete
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.exe
+c:\users\juan-\source\repos\ProyectoAllers\ProyectoAllers\obj\Debug\ProyectoAllers.pdb

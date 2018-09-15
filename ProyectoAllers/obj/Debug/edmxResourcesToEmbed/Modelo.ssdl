@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Modelo.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModeloStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Modelo.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Articulos" EntityType="Modelo.Store.Articulos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ventas" EntityType="Modelo.Store.Ventas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pedidos" EntityType="Modelo.Store.Pedidos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PedidoArticulo" Association="Modelo.Store.PedidoArticulo">
+      <End Role="Pedido" EntitySet="Pedidos" />
+      <End Role="Articulo" EntitySet="Articulos" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteVenta" Association="Modelo.Store.ClienteVenta">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Venta" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="VentaPedido" Association="Modelo.Store.VentaPedido">
+      <End Role="Venta" EntitySet="Ventas" />
+      <End Role="Pedido" EntitySet="Pedidos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="CardCode" />
+    </Key>
+    <Property Name="CardCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Region" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pymnt" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Articulos">
+    <Key>
+      <PropertyRef Name="ItemCode" />
+    </Key>
+    <Property Name="ItemCode" Type="int" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="DocNum" />
+      <PropertyRef Name="ClienteCardCode" />
+    </Key>
+    <Property Name="DocNum" Type="int" Nullable="false" />
+    <Property Name="DocDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DocTotal" Type="float" Nullable="false" />
+    <Property Name="ClienteCardCode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="ArticuloItemCode" />
+      <PropertyRef Name="VentaDocNum1" />
+    </Key>
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="ArticuloItemCode" Type="int" Nullable="false" />
+    <Property Name="LineaTotal" Type="float" Nullable="false" />
+    <Property Name="VentaDocNum1" Type="int" Nullable="false" />
+    <Property Name="VentaClienteCardCode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="PedidoArticulo">
+    <End Role="Pedido" Type="Modelo.Store.Pedidos" Multiplicity="*" />
+    <End Role="Articulo" Type="Modelo.Store.Articulos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Articulo">
+        <PropertyRef Name="ItemCode" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="ArticuloItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteVenta">
+    <End Role="Cliente" Type="Modelo.Store.Clientes" Multiplicity="1" />
+    <End Role="Venta" Type="Modelo.Store.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="CardCode" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="ClienteCardCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VentaPedido">
+    <End Role="Venta" Type="Modelo.Store.Ventas" Multiplicity="1" />
+    <End Role="Pedido" Type="Modelo.Store.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="DocNum" />
+        <PropertyRef Name="ClienteCardCode" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="VentaDocNum1" />
+        <PropertyRef Name="VentaClienteCardCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
