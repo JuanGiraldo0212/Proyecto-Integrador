@@ -1,0 +1,9 @@
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.Properties.Resources.resources
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.csproj.GenerateResource.cache
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
+C:\Users\Juan Diego\source\repos\Allers\Allers\bin\Debug\Allers.exe.config
+C:\Users\Juan Diego\source\repos\Allers\Allers\bin\Debug\Allers.exe
+C:\Users\Juan Diego\source\repos\Allers\Allers\bin\Debug\Allers.pdb
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.exe
+C:\Users\Juan Diego\source\repos\Allers\Allers\obj\Debug\Allers.pdb
