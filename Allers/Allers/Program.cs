@@ -107,5 +107,64 @@ namespace Allers
                                 .Union(Combinations(elements.Skip(1), setLenght));
             }
         }
+        public static List<List<Articulo>> ConjuntoPotencia(List<Articulo> conjunto)
+        {
+            List<List<Articulo>> conjuntoPotencia = new List<List<Articulo>>();
+            if (conjunto.Count() == 2)
+            {
+                conjuntoPotencia.Add(new List<Articulo>());
+                List<Articulo> conjunto1 = new List<Articulo>()
+                {
+                    conjunto[0]
+                };
+                List<Articulo> conjunto2 = new List<Articulo>()
+                {
+                    conjunto[1]
+                };
+                List<Articulo> conjunto3 = new List<Articulo>()
+                {
+                    conjunto[0],conjunto[1],
+                };
+                conjuntoPotencia.Add(conjunto1);
+                conjuntoPotencia.Add(conjunto2);
+                conjuntoPotencia.Add(conjunto3);
+            }
+            else
+            {
+                List<Articulo> aux = new List<Articulo>();
+                for (int i = 0; i < conjunto.Count() - 1; i++)
+                {
+                    aux.Add(conjunto[i]);
+                }
+                Articulo last = conjunto.Last();
+                conjuntoPotencia = ConjuntoPotencia(aux);
+
+                List<List<Articulo>> aux1 = new List<List<Articulo>>();
+
+                for (int i = 0; i < conjuntoPotencia.Count(); i++)
+                {
+                    List<Articulo> aux2 = new List<Articulo>();
+                    if (conjuntoPotencia[i].Count() == 0)
+                    {
+                        aux2.Add(last);
+                    }
+                    for (int j = 0; j < conjuntoPotencia[i].Count(); j++)
+                    {
+                        Articulo actual = new Articulo();
+                        string code = Convert.ToString(conjuntoPotencia[i][j].itemCode).Clone()+"";
+                        actual.itemCode = Convert.ToInt32(code);
+                        actual.itemName = conjuntoPotencia[i][j].itemName.Clone()+"";
+                        aux2.Add(actual);
+                        aux2.Add(last);
+                    }
+                    aux1.Add(aux2.Distinct().ToList());
+                }
+                foreach (List<Articulo> lista in aux1)
+                {
+                    conjuntoPotencia.Add(lista);
+                }
+            }
+            return conjuntoPotencia;
+        }
     }
 }
