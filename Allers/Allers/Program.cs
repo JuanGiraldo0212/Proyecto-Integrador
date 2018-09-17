@@ -293,15 +293,15 @@ namespace Allers
             return support;
         }
 
-        public static List<Articulo> association(List<Articulo> input)
+        public static List<List<Articulo>> association(List<Articulo> input)
         {
-            List<Articulo> salida = new List<Articulo>();
+            List<List<Articulo>> salida = new List<List<Articulo>>();
             foreach (var s in rules)
             {
                 if (s.antecedente.All(element => input.Contains(element)))
                 {
 
-                    salida = s.consecuente;
+                    salida.Add( s.consecuente);
 
                 }
                 else
@@ -316,6 +316,8 @@ namespace Allers
 
 
         }
+
+		
 
     }
 }
