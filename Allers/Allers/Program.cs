@@ -215,8 +215,8 @@ namespace Allers
 
         public class Rules
         {
-            private List<Articulo> antecedente { get; set; } 
-            private List<Articulo> consecuente { get; set; } 
+            public List<Articulo> antecedente { get; set; }
+            public List<Articulo> consecuente { get; set; } 
             private double suppCount { get; set; }
 
             private double confidenceCount {get; set;}
@@ -293,6 +293,29 @@ namespace Allers
             return support;
         }
 
+        public static List<Articulo> association(List<Articulo> input)
+        {
+            List<Articulo> salida = new List<Articulo>();
+            foreach (var s in rules)
+            {
+                if (s.antecedente.All(element => input.Contains(element)))
+                {
+
+                    salida = s.consecuente;
+
+                }
+                else
+                {
+
+                    salida = null;
+                }
+
+            }
+
+            return salida;
+
+
+        }
 
     }
 }
