@@ -255,16 +255,28 @@ namespace Allers
 
             foreach(var s in frequentItemSet)
             {
-                for(int i = 0; i<s.getItemSet().Count();i++)
+                for(int i = 1; i<s.getItemSet().Count();i++)
                 {
                  List<Articulo> antecedente = s.getItemSet().ToList().GetRange(0,i);
-                 List<Articulo> consecuente = s.getItemSet().ToList().GetRange(i, s.getItemSet().Count());
+                 List<Articulo> consecuente = s.getItemSet().ToList().GetRange(i, s.getItemSet().Count()-i);
                  rules.Add(new Rules(antecedente,consecuente,s.getSupp(),s.getSupp()/calcSupport(antecedente)));
                 }
             }
 
+            foreach (var s in frequentItemSet)
+            {
+                List<Articulo> antecedente = s.getItemSet().ToList().GetRange(s.getItemSet().Count()-1, s.getItemSet().Count());
+                List<Articulo> consecuente = s.getItemSet().ToList().GetRange(0, s.getItemSet().Count()-1);
+                rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
+            }
 
+            rules.Distinct();
+            
+        }
 
+        public static void checkRules(double confidCountPar)
+        {
+            rules = rules.Where(z => z.getConf() >= confidCountPar).ToList();
         }
 
         public static int calcSupport(List<Articulo> s)
