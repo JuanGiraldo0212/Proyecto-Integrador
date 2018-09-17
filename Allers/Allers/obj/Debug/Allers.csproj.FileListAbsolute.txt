@@ -16,3 +16,12 @@ C:\Users\hp\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.cspr
 C:\Users\hp\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
 C:\Users\hp\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
 C:\Users\hp\source\repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe.config
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.pdb
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.Properties.Resources.resources
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.GenerateResource.cache
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
+E:\reposTemp\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb

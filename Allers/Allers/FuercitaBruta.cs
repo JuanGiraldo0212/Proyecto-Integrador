@@ -155,8 +155,9 @@ namespace Allers
 
             setTransactions(transacciones);
 
-            List<transWithSupp> listaFinal = frequentItemSet(combinaciones, 0.95);
-
+            List<transWithSupp> listaFinal = frequentItemSet(combinaciones, 0.25);
+            generateRules(listaFinal);
+            checkRules(0.05);
             Console.WriteLine("Olee");
 
         }
@@ -176,17 +177,17 @@ namespace Allers
             int elementLenght = elements.Count();
             if (setLenght == 1)
             {
-                Console.Write("Holi");
+             
                 return elements.Select(e => Enumerable.Repeat(e, 1).ToList()).ToList();
             }
             else if (setLenght == elementLenght)
             {
-                Console.Write("Holi");
+                
                 return Enumerable.Repeat(elements, 1).ToList();
             }
             else
             {
-                Console.Write("Holi");
+               
                 return Combinations(elements.Skip(1).ToList(), setLenght - 1)
                                 .Select(tail => Enumerable.Repeat(elements.First(), 1).Union(tail).ToList())
                                 .Union(Combinations(elements.Skip(1).ToList(), setLenght).ToList()).ToList();
@@ -328,13 +329,15 @@ namespace Allers
             List<transWithSupp> transwithSuppList = new List<transWithSupp>();
             foreach (var s in itemSets)
             {
-                transwithSuppList.Add(new transWithSupp(s.ToList(), calcSupport(s.ToList()) / transactions.Count(), calcSupport(s.ToList())));
+                double transcount = transactions.Count;
+                double suppCount = calcSupport(s.ToList()) / transcount;
+                transwithSuppList.Add(new transWithSupp(s.ToList(), suppCount, calcSupport(s.ToList())));
 
             }
             return transwithSuppList.Where(c => c.getSupp() >= suppCountPar).ToList();
         }
 
-        public void generateRules<T>(List<transWithSupp> frequentItemSet)
+        public void generateRules(List<transWithSupp> frequentItemSet)
         {
 
             foreach (var s in frequentItemSet)
@@ -349,7 +352,7 @@ namespace Allers
 
             foreach (var s in frequentItemSet)
             {
-                List<Articulo> antecedente = s.getItemSet().ToList().GetRange(s.getItemSet().Count() - 1, s.getItemSet().Count());
+                List<Articulo> antecedente = s.getItemSet().ToList().GetRange(s.getItemSet().Count-1, s.getItemSet().Count()-1);
                 List<Articulo> consecuente = s.getItemSet().ToList().GetRange(0, s.getItemSet().Count() - 1);
                 rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
             }
@@ -363,13 +366,13 @@ namespace Allers
             rules = rules.Where(z => z.getConf() >= confidCountPar).ToList();
         }
 
-        public int calcSupport(List<Articulo> s)
+        public  int calcSupport(List<Articulo> s)
         {
             int support = 0;
             foreach (var z in transactions)
             {
 
-                if (z.All(element => s.Contains(element)))
+                if (s.All(element => z.Contains(element)))
                 {
                     support++;
                 }
