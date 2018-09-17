@@ -8,14 +8,28 @@ using System.Windows.Forms;
 
 namespace Allers
 {
-    static class Program
+    public class Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
+        /// 
+
+
+        
         [STAThread]
         static void Main()
         {
+            FuercitaBruta principal = new FuercitaBruta();
+            //principal.cargarDatos();
+            //principal.hacerCombinaciones();
+
+            principal.pruebaCombinaciones();
+
+            String cosa = principal.darVentas().ElementAt(17).itemCode;
+
+
+            /*
             cargarDatos();
             Combinations(articulos, 9).AsParallel().ToList().ForEach(i =>
             {
@@ -23,17 +37,19 @@ namespace Allers
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
+            */
+
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
         }
-        static List<Articulo> articulos = new List<Articulo>();
-        static List<Venta> ventas = new List<Venta>();
 
+        //static List<Articulo> articulos = new List<Articulo>();
+        //static List<Venta> ventas = new List<Venta>();
+        /*
         public static void cargarDatos()
         {
-
-
+            
             //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
             var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
             var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
@@ -107,6 +123,8 @@ namespace Allers
                                 .Union(Combinations(elements.Skip(1), setLenght));
             }
         }
+        */
+        /*
         public static List<List<Articulo>> ConjuntoPotencia(List<Articulo> conjunto)
         {
             List<List<Articulo>> conjuntoPotencia = new List<List<Articulo>>();
@@ -166,5 +184,6 @@ namespace Allers
             }
             return conjuntoPotencia;
         }
+        */
     }
 }

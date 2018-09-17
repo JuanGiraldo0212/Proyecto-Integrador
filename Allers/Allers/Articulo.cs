@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Allers
 {
-	class Articulo
+	public class Articulo
 	{
 
 		public int itemCode { get; set; }

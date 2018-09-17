@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allers", "Allers\Allers.csproj", "{D6F326C3-09EF-422A-B386-E92064A5A88E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuerzaBrutaTest", "FuerzaBrutaTest\FuerzaBrutaTest.csproj", "{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D6F326C3-09EF-422A-B386-E92064A5A88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F326C3-09EF-422A-B386-E92064A5A88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F326C3-09EF-422A-B386-E92064A5A88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

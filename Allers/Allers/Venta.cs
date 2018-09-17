@@ -1,6 +1,6 @@
 ﻿namespace Allers
 {
-	class Venta
+	public class Venta
 	{
 
 		public string cardCode { get; set; }
