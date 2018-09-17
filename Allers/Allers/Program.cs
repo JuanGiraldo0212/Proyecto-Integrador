@@ -17,6 +17,12 @@ namespace Allers
         [STAThread]
         static void Main()
         {
+            FuercitaBruta principal = new FuercitaBruta();
+            principal.pruebaCombinaciones();
+            //principal.cargarDatos();
+            //principal.hacerCombinaciones();
+
+            /*
             cargarDatos();
             Combinations(articulos, 9).AsParallel().ToList().ForEach(i =>
             {
@@ -24,6 +30,7 @@ namespace Allers
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
+            */
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
@@ -37,9 +44,7 @@ namespace Allers
             //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
             var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
             var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
-
-
-
+            
             foreach (var s in datosVentas)
             {
                 String[] datos = s.Split(';');
@@ -56,9 +61,7 @@ namespace Allers
                     nueva.precio = Convert.ToDouble(datos[6]);
                     nueva.lineaTotal = Convert.ToDouble(datos[7]);
                     ventas.Add(nueva);
-
-
-
+                    
                 }
             }
 
@@ -169,6 +172,7 @@ namespace Allers
             }
             return conjuntoPotencia;
         }
+
         static List<List<Articulo>> transactions = new List<List<Articulo>>();
 
 
@@ -238,7 +242,6 @@ namespace Allers
             }
         }
         public static List<transWithSupp> frequentItemSet(List<List<Articulo>> itemSets, double suppCountPar){
-
             
             List<transWithSupp> transwithSuppList = new List<transWithSupp>();
             foreach (var s in itemSets)
