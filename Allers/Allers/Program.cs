@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,11 +29,10 @@ namespace Allers
         }
         static List<Articulo> articulos = new List<Articulo>();
         static List<Venta> ventas = new List<Venta>();
+        static List<Rules> rules = new List<Rules>();
 
         public static void cargarDatos()
         {
-
-
             //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
             var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
             var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
@@ -86,7 +85,8 @@ namespace Allers
             Console.WriteLine(articulos.Count());
             Console.WriteLine(ventas.Count());
         }
-        public static IEnumerable<IEnumerable<T>> Combinations<T>(IEnumerable<T> elements, int setLenght)
+
+        public static List<List<Articulo>> Combinations<Articulo>(List<Articulo> elements, int setLenght)
         {
             int elementLenght = elements.Count();
             if (setLenght == 1)
@@ -107,6 +107,7 @@ namespace Allers
                                 .Union(Combinations(elements.Skip(1), setLenght));
             }
         }
+
         public static List<List<Articulo>> ConjuntoPotencia(List<Articulo> conjunto)
         {
             List<List<Articulo>> conjuntoPotencia = new List<List<Articulo>>();
@@ -161,10 +162,122 @@ namespace Allers
                 }
                 foreach (List<Articulo> lista in aux1)
                 {
+                    
                     conjuntoPotencia.Add(lista);
                 }
             }
             return conjuntoPotencia;
         }
+        static List<List<Articulo>> transactions = new List<List<Articulo>>();
+
+
+        public static void cargarTransactions()
+        {
+            List<List<Articulo>> trans = new List<List<Articulo>>();
+            var cons = ventas.GroupBy(x => x.cardCode);
+            foreach (var s in cons)
+            {
+                List<Articulo> temp = new List<Articulo>();
+                foreach (var r in s)
+                {
+                    temp.Add(articulos.First(x => x.itemCode.Equals(r.itemCode)));
+
+                }
+                trans.Add(temp);
+            }
+            transactions = trans;
+        }
+
+            public class transWithSupp
+            {
+            private List<Articulo> trans { get; set; }
+            private double suppCount { get; set; }
+            private double supp { get; set; }
+
+            public transWithSupp(List<Articulo> trans, double suppCount, double supp)
+            {
+                this.trans = trans;
+                this.suppCount = suppCount;
+                this.supp = supp;
+            }
+            public double getSupp()
+            {
+                return suppCount;
+            }
+
+            public List<Articulo> getItemSet()
+            {
+                return trans;
+            }
+
+        }
+
+        public class Rules
+        {
+            private List<Articulo> antecedente { get; set; }
+            private List<Articulo> consecuente { get; set; }
+            private double suppCount { get; set; }
+
+            private double confidenceCount { get; set; }
+
+            public Rules(List<Articulo> antecedente, List<Articulo> consecuente,  double suppCount, double confidenceCount)
+            {
+                this.consecuente = consecuente;
+                this.antecedente = antecedente;
+                this.suppCount = suppCount;
+                this.confidenceCount = confidenceCount;
+            }
+            public double getSupp()
+            {
+                return suppCount;
+            }
+            public double getConf()
+            {
+                return confidenceCount;
+            }
+        }
+        public static IEnumerable<transWithSupp> frequentItemSet(List<List<Articulo>> itemSets, double suppCountPar){
+
+            
+            List<transWithSupp> transwithSuppList = new List<transWithSupp>();
+            foreach (var s in itemSets)
+            {
+                transwithSuppList.Add(new transWithSupp(s, calcSupport(s)/transactions.Count(), calcSupport(s)));
+
+            }
+
+            return transwithSuppList.Where(c=>c.getSupp()>=suppCountPar);
+        }
+
+        public static void generateRules<T>(IEnumerable<transWithSupp> frequentItemSet)
+        {
+
+            foreach(var s in frequentItemSet)
+            {
+                for(int i = 0; i<s.getItemSet().Count();i++)
+                {
+                 List<Articulo> antecedente = s.getItemSet().ToList().GetRange(0,i);
+                 List<Articulo> consecuente = s.getItemSet().ToList().GetRange(i, s.getItemSet().Count());
+                 rules.Add(new Rules(antecedente,consecuente,s.getSupp));
+                }
+            }
+
+        }
+
+        public static int calcSupport(List<Articulo> s)
+        {
+            int support = 0;
+            foreach (var z in transactions)
+            {
+
+                if (z.All(element => s.Contains(element)))
+                {
+                    support++;
+                }
+            }
+            return support;
+        }
+
+
     }
 }
