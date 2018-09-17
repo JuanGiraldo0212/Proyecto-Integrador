@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Linq;
@@ -92,19 +93,19 @@ namespace Allers
             if (setLenght == 1)
             {
                 Console.Write("Holi");
-                return elements.Select(e => Enumerable.Repeat(e, 1));
+                return elements.Select(e => Enumerable.Repeat(e, 1).ToList()).ToList();
             }
             else if (setLenght == elementLenght)
             {
                 Console.Write("Holi");
-                return Enumerable.Repeat(elements, 1);
+                return Enumerable.Repeat(elements, 1).ToList();
             }
             else
             {
                 Console.Write("Holi");
-                return Combinations(elements.Skip(1), setLenght - 1)
-                                .Select(tail => Enumerable.Repeat(elements.First(), 1).Union(tail))
-                                .Union(Combinations(elements.Skip(1), setLenght));
+                return Combinations(elements.Skip(1).ToList(), setLenght - 1)
+                                .Select(tail => Enumerable.Repeat(elements.First(), 1).Union(tail).ToList())
+                                .Union(Combinations(elements.Skip(1).ToList(), setLenght).ToList()).ToList();
             }
         }
 
@@ -214,11 +215,11 @@ namespace Allers
 
         public class Rules
         {
-            private List<Articulo> antecedente { get; set; }
-            private List<Articulo> consecuente { get; set; }
+            private List<Articulo> antecedente { get; set; } 
+            private List<Articulo> consecuente { get; set; } 
             private double suppCount { get; set; }
 
-            private double confidenceCount { get; set; }
+            private double confidenceCount {get; set;}
 
             public Rules(List<Articulo> antecedente, List<Articulo> consecuente,  double suppCount, double confidenceCount)
             {
@@ -236,7 +237,7 @@ namespace Allers
                 return confidenceCount;
             }
         }
-        public static IEnumerable<transWithSupp> frequentItemSet(List<List<Articulo>> itemSets, double suppCountPar){
+        public static List<transWithSupp> frequentItemSet(List<List<Articulo>> itemSets, double suppCountPar){
 
             
             List<transWithSupp> transwithSuppList = new List<transWithSupp>();
@@ -246,10 +247,10 @@ namespace Allers
 
             }
 
-            return transwithSuppList.Where(c=>c.getSupp()>=suppCountPar);
+            return transwithSuppList.Where(c=>c.getSupp()>=suppCountPar).ToList();
         }
 
-        public static void generateRules<T>(IEnumerable<transWithSupp> frequentItemSet)
+        public static void generateRules<T>(List<transWithSupp> frequentItemSet)
         {
 
             foreach(var s in frequentItemSet)
@@ -258,9 +259,11 @@ namespace Allers
                 {
                  List<Articulo> antecedente = s.getItemSet().ToList().GetRange(0,i);
                  List<Articulo> consecuente = s.getItemSet().ToList().GetRange(i, s.getItemSet().Count());
-                 rules.Add(new Rules(antecedente,consecuente,s.getSupp));
+                 rules.Add(new Rules(antecedente,consecuente,s.getSupp(),s.getSupp()/calcSupport(antecedente)));
                 }
             }
+
+
 
         }
 
