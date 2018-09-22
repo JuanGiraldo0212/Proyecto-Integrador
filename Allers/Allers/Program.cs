@@ -18,8 +18,9 @@ namespace Allers
         static void Main()
         {
             FuercitaBruta principal = new FuercitaBruta();
-            principal.pruebaCombinaciones();
-            //principal.cargarDatos();
+            //principal.pruebaCombinaciones();
+            principal.cargarDatos();
+			principal.cleanData(0.0002, 1.33959370123042E-05);
             //principal.hacerCombinaciones();
 
             /*
@@ -86,8 +87,8 @@ namespace Allers
                 }
             }
 
-            Console.WriteLine(articulos.Count());
-            Console.WriteLine(ventas.Count());
+            //Console.WriteLine(articulos.Count());
+            //Console.WriteLine(ventas.Count());
         }
 
         public static List<List<Articulo>> Combinations<Articulo>(List<Articulo> elements, int setLenght)

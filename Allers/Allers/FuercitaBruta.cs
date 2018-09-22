@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -84,8 +85,8 @@ namespace Allers
                 }
             }
 
-            Console.WriteLine(articulos.Count());
-            Console.WriteLine(ventas.Count());
+            //Console.WriteLine(articulos.Count());
+            //Console.WriteLine(ventas.Count());
         }
 
         public void pruebaCombinaciones()
@@ -397,6 +398,38 @@ namespace Allers
             return salida;
             
         }
+
+		public void cleanData(double topTH,double botTH) {
+
+			List<Articulo> cleanList = new List<Articulo>();
+			double count = ventas.Count();
+			Hashtable set = new Hashtable();
+			for (int i=0;i<ventas.Count();i++) {
+				if (!set.ContainsKey(ventas[i].itemCode))
+				{
+					set.Add(ventas[i].itemCode, 1);
+				}
+				else {
+					set[ventas[i].itemCode] = Convert.ToInt32(set[ventas[i].itemCode])+1;
+				}
+			}
+			foreach (DictionaryEntry elemento in set) {
+				Console.WriteLine(elemento.Value);
+				Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
+				if (((Convert.ToInt32(elemento.Value)/count)>=topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH) ) {
+					try {
+						cleanList.Add(articulos.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
+					}
+					catch (Exception e) {
+						Console.WriteLine(elemento.Key);
+					}
+				}
+			}
+
+			Console.WriteLine(cleanList.Count());
+		
+		}
+
 
     }
 }
