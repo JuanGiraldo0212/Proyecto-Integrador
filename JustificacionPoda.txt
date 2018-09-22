@@ -1,0 +1,3 @@
+Como estrategia de poda de datos se decidio filtrar los articulos en dos cartegorias, los productos estrella y productos poco vendidos, estos dos conjuntos
+seran generados de acuerdo a ciertos limites de ventas propuestos por el usuario. Se cree que este proceso es beneficioso para Allers ya que a la compañia le conviene
+saber que productos poco vendidos pueden ser ofertados con los productos estrella, para asi generar mas movimiento de inventario y disminuir la perdida de productos por acumulacion.
