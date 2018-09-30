@@ -17,6 +17,10 @@ namespace Allers
 
 		}
 
-		
+		public override string ToString()
+		{
+			return itemName;
+		}
+
 	}
 }
