@@ -116,8 +116,8 @@ namespace Allers
 
 
             IEnumerable<IEnumerable<Articulo>> combinaciones = GetPowerSet(articulosPrueba);
-            Console.Write("ItemSets");
-            combinaciones.OrderBy(x => x.Count()).AsParallel().ToList().ForEach(i =>
+            Console.Write("ITEMSETS GENERADOS");
+            combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
             {
                 Console.Write("{");
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
@@ -161,8 +161,16 @@ namespace Allers
             setTransactions(transacciones);
 
             List<transWithSupp> listaFinal = frequentItemSet(combinaciones, 0.25);
+            Console.WriteLine("ITEMSETS FRECUENTES");
+            listaFinal.OrderBy(x => x.getItemSet().Count()).ToList().ForEach(i =>
+            {
+                Console.Write("{");
+                i.getItemSet().ToList().ForEach(j => Console.Write(j.itemName + ","));
+                Console.Write("}");
+                Console.WriteLine(" Support Count:" + i.getSupp());
+            });
             generateRules(listaFinal);
-            Console.WriteLine("Reglas Generadas");
+            Console.WriteLine("REGLAS GENERADAS");
             rules.ForEach(r =>
             {
                 Console.Write("{");
@@ -176,8 +184,21 @@ namespace Allers
                 Console.Write("\n");
 
             });
-            checkRules(0.05);
-            Console.WriteLine("Olee");
+            checkRules(0.09);
+            Console.WriteLine("REGLAS QUE PASARON EL UMBRAL DE 0,09");
+            rules.ForEach(r =>
+            {
+                Console.Write("{");
+                r.antecedente.ForEach(a => Console.Write(a.itemName + ","));
+                Console.Write("-->");
+                r.consecuente.ForEach(b => Console.Write(b.itemName + ","));
+                Console.Write("}");
+                Console.Write("Confidence count:" + r.getConf());
+                Console.Write(" Support Count:" + r.getSupp());
+
+                Console.Write("\n");
+
+            });
 
         }
 
@@ -280,13 +301,20 @@ namespace Allers
         public void cargarTransactions()
         {
             List<List<Articulo>> trans = new List<List<Articulo>>();
-            var cons = ventas.GroupBy(x => x.cardCode);
+            var cons = ventas.GroupBy(x => x.docNum);
             foreach (var s in cons)
             {
                 List<Articulo> temp = new List<Articulo>();
                 foreach (var r in s)
                 {
-                    temp.Add(articulos.First(x => x.itemCode.Equals(r.itemCode)));
+                    try
+                    {
+                        temp.Add(articulos.First(x => x.itemCode.Equals(Convert.ToInt32(r.itemCode))));
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
 
                 }
                 trans.Add(temp);
