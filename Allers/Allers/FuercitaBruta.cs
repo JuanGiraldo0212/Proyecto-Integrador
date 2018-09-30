@@ -10,7 +10,7 @@ namespace Allers
 {
     public class FuercitaBruta
     {
-        
+
         public List<Articulo> articulos = new List<Articulo>();
         public List<Venta> ventas = new List<Venta>();
 
@@ -115,11 +115,15 @@ namespace Allers
             articulosPrueba.Add(articulo4);
 
 
-            IEnumerable<IEnumerable<Articulo>> combinaciones = new List<List<Articulo>>();
-            for (int i = 1; i <= 4; i++)
+            IEnumerable<IEnumerable<Articulo>> combinaciones = GetPowerSet(articulosPrueba);
+            Console.Write("ItemSets");
+            combinaciones.OrderBy(x => x.Count()).AsParallel().ToList().ForEach(i =>
             {
-                combinaciones = combinaciones.Union(Combinations(articulosPrueba, i));
-            }
+                Console.Write("{");
+                i.ToList().ForEach(j => Console.Write(j.itemName + ","));
+                Console.WriteLine("}");
+            });
+
             //var misArt = bruta.Combinations(articulosPrueba, 2);
 
             List<List<Articulo>> transacciones = new List<List<Articulo>>();
@@ -158,6 +162,20 @@ namespace Allers
 
             List<transWithSupp> listaFinal = frequentItemSet(combinaciones, 0.25);
             generateRules(listaFinal);
+            Console.WriteLine("Reglas Generadas");
+            rules.ForEach(r =>
+            {
+                Console.Write("{");
+                r.antecedente.ForEach(a => Console.Write(a.itemName + ","));
+                Console.Write("-->");
+                r.consecuente.ForEach(b => Console.Write(b.itemName + ","));
+                Console.Write("}");
+                Console.Write("Confidence count:" + r.getConf());
+                Console.Write(" Support Count:" + r.getSupp());
+
+                Console.Write("\n");
+
+            });
             checkRules(0.05);
             Console.WriteLine("Olee");
 
@@ -178,17 +196,17 @@ namespace Allers
             int elementLenght = elements.Count();
             if (setLenght == 1)
             {
-             
+
                 return elements.Select(e => Enumerable.Repeat(e, 1).ToList()).ToList();
             }
             else if (setLenght == elementLenght)
             {
-                
+
                 return Enumerable.Repeat(elements, 1).ToList();
             }
             else
             {
-               
+
                 return Combinations(elements.Skip(1).ToList(), setLenght - 1)
                                 .Select(tail => Enumerable.Repeat(elements.First(), 1).Union(tail).ToList())
                                 .Union(Combinations(elements.Skip(1).ToList(), setLenght).ToList()).ToList();
@@ -347,15 +365,24 @@ namespace Allers
                 {
                     List<Articulo> antecedente = s.getItemSet().ToList().GetRange(0, i);
                     List<Articulo> consecuente = s.getItemSet().ToList().GetRange(i, s.getItemSet().Count() - i);
-                    rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
+                    if (antecedente.Count() != 0 && consecuente.Count() != 0)
+                    {
+                        rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
+                    }
                 }
             }
 
             foreach (var s in frequentItemSet)
             {
-                List<Articulo> antecedente = s.getItemSet().ToList().GetRange(s.getItemSet().Count-1, s.getItemSet().Count()-1);
-                List<Articulo> consecuente = s.getItemSet().ToList().GetRange(0, s.getItemSet().Count() - 1);
-                rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
+                if (s.getItemSet().Count() > 0)
+                {
+                    List<Articulo> antecedente = s.getItemSet().ToList().GetRange(s.getItemSet().Count - 1, s.getItemSet().Count() - 1);
+                    List<Articulo> consecuente = s.getItemSet().ToList().GetRange(0, s.getItemSet().Count() - 1);
+                    if (antecedente.Count() != 0 && consecuente.Count() != 0)
+                    {
+                        rules.Add(new Rules(antecedente, consecuente, s.getSupp(), s.getSupp() / calcSupport(antecedente)));
+                    }
+                }
             }
 
             rules.Distinct();
@@ -367,7 +394,7 @@ namespace Allers
             rules = rules.Where(z => z.getConf() >= confidCountPar).ToList();
         }
 
-        public  int calcSupport(List<Articulo> s)
+        public int calcSupport(List<Articulo> s)
         {
             int support = 0;
             foreach (var z in transactions)
@@ -396,40 +423,57 @@ namespace Allers
                 }
             }
             return salida;
-            
+
         }
 
-		public void cleanData(double topTH,double botTH) {
+        public void cleanData(double topTH, double botTH)
+        {
 
-			List<Articulo> cleanList = new List<Articulo>();
-			double count = ventas.Count();
-			Hashtable set = new Hashtable();
-			for (int i=0;i<ventas.Count();i++) {
-				if (!set.ContainsKey(ventas[i].itemCode))
-				{
-					set.Add(ventas[i].itemCode, 1);
-				}
-				else {
-					set[ventas[i].itemCode] = Convert.ToInt32(set[ventas[i].itemCode])+1;
-				}
-			}
-			foreach (DictionaryEntry elemento in set) {
-				Console.WriteLine(elemento.Value);
-				Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
-				if (((Convert.ToInt32(elemento.Value)/count)>=topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH) ) {
-					try {
-						cleanList.Add(articulos.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
-					}
-					catch (Exception e) {
-						Console.WriteLine(elemento.Key);
-					}
-				}
-			}
+            List<Articulo> cleanList = new List<Articulo>();
+            double count = ventas.Count();
+            Hashtable set = new Hashtable();
+            for (int i = 0; i < ventas.Count(); i++)
+            {
+                if (!set.ContainsKey(ventas[i].itemCode))
+                {
+                    set.Add(ventas[i].itemCode, 1);
+                }
+                else
+                {
+                    set[ventas[i].itemCode] = Convert.ToInt32(set[ventas[i].itemCode]) + 1;
+                }
+            }
+            foreach (DictionaryEntry elemento in set)
+            {
+                Console.WriteLine(elemento.Value);
+                Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
+                if (((Convert.ToInt32(elemento.Value) / count) >= topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH))
+                {
+                    try
+                    {
+                        cleanList.Add(articulos.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(elemento.Key);
+                    }
+                }
+            }
 
-			Console.WriteLine(cleanList.Count());
-		
-		}
+            Console.WriteLine(cleanList.Count());
+
+        }
+        public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
+        {
+            return from m in Enumerable.Range(0, 1 << list.Count)
+                   select
+                       from i in Enumerable.Range(0, list.Count)
+                       where (m & (1 << i)) != 0
+                       select list[i];
+        }
+
 
 
     }
 }
+
