@@ -28,19 +28,23 @@ namespace Allers
             principal.cargarDatos();
             principal.cleanData(0.0002, 1.33959370123042E-05);
             IEnumerable<IEnumerable<Articulo>> combinaciones = principal.GetPowerSet(principal.articulos);
-            Console.Write("ItemSets");
-            combinaciones.OrderBy(x => x.Count()).AsParallel().ToList().ForEach(i =>
+            Console.Write("ITEMSETS RESULTANTES");
+            combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
             {
                 Console.Write("{");
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
-
-
-
-            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, 0.25);
+            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, 0.0);
+            Console.Write("ITEMSETS FRECUENTES: " + listaFinal.Count() + "\n");
+            listaFinal.OrderBy(x => x.getItemSet().Count()).ToList().ForEach(i =>
+            {
+                Console.Write("{");
+                i.getItemSet().ToList().ForEach(j => Console.Write(j.itemName + ","));
+                Console.WriteLine("}");
+            });
             principal.generateRules(listaFinal);
-            Console.WriteLine("Reglas Generadas");
+            Console.WriteLine("REGLAS GENERADAS");
             principal.rules.ForEach(r =>
             {
                 Console.Write("{");
@@ -54,8 +58,8 @@ namespace Allers
                 Console.Write("\n");
 
             });
-            principal.checkRules(0.05);
-            Console.WriteLine("Reglas que superan el umbral");
+            principal.checkRules(0.0);
+            Console.WriteLine("REGLAS QUE SUPERAN EL UMBRAL");
             principal.rules.ForEach(r =>
             {
                 Console.Write("{");
