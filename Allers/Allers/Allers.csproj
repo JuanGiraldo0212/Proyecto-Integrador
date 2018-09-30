@@ -68,6 +68,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Articulos.csv" />
+    <None Include="Articulos2.csv" />
     <None Include="Clientes.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +80,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Ventas.csv" />
+    <None Include="Ventas2.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
