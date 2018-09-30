@@ -20,7 +20,9 @@ namespace Allers
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            analisisFuerzaBruta();
+            //analisisFuerzaBruta();
+            FuercitaBruta principal = new FuercitaBruta();
+            principal.pruebaCombinaciones();
         }
         public static void analisisFuerzaBruta()
         {
@@ -35,7 +37,7 @@ namespace Allers
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
-            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, 0.0);
+            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, -1);
             Console.Write("ITEMSETS FRECUENTES: " + listaFinal.Count() + "\n");
             listaFinal.OrderBy(x => x.getItemSet().Count()).ToList().ForEach(i =>
             {
@@ -58,7 +60,7 @@ namespace Allers
                 Console.Write("\n");
 
             });
-            principal.checkRules(0.0);
+            principal.checkRules(-1);
             Console.WriteLine("REGLAS QUE SUPERAN EL UMBRAL");
             principal.rules.ForEach(r =>
             {
