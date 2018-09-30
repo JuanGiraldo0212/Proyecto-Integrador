@@ -1,0 +1,11 @@
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\A-Priori.exe.config
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\A-Priori.exe
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\A-Priori.pdb
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\Allers.exe
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\Allers.pdb
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\bin\Debug\Allers.exe.config
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\obj\Debug\A-Priori.csprojAssemblyReference.cache
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\obj\Debug\A-Priori.csproj.CoreCompileInputs.cache
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\obj\Debug\A-Priori.csproj.CopyComplete
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\obj\Debug\A-Priori.exe
+C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\A-Priori\obj\Debug\A-Priori.pdb

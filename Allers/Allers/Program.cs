@@ -20,18 +20,17 @@ namespace Allers
             FuercitaBruta principal = new FuercitaBruta();
             //principal.pruebaCombinaciones();
             principal.cargarDatos();
-			principal.cleanData(0.0002, 1.33959370123042E-05);
+			principal.cleanData(0.0002, 1.5-05);
             //principal.hacerCombinaciones();
 
-            /*
-            cargarDatos();
+            
             Combinations(articulos, 9).AsParallel().ToList().ForEach(i =>
             {
                 Console.Write("{");
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
-            */
+            
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());

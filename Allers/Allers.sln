@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allers", "Allers\Allers.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuerzaBrutaTest", "FuerzaBrutaTest\FuerzaBrutaTest.csproj", "{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-Priori", "A-Priori\A-Priori.csproj", "{37FB9A90-FB9E-4C4A-825A-F3167C1E9507}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBF70DCE-3E11-4449-9712-EE8C58FE82A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37FB9A90-FB9E-4C4A-825A-F3167C1E9507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37FB9A90-FB9E-4C4A-825A-F3167C1E9507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37FB9A90-FB9E-4C4A-825A-F3167C1E9507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37FB9A90-FB9E-4C4A-825A-F3167C1E9507}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

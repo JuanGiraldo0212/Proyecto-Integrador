@@ -262,7 +262,7 @@ namespace Allers
         public void cargarTransactions()
         {
             List<List<Articulo>> trans = new List<List<Articulo>>();
-            var cons = ventas.GroupBy(x => x.cardCode);
+            var cons = ventas.GroupBy(x => x.docNum);
             foreach (var s in cons)
             {
                 List<Articulo> temp = new List<Articulo>();
@@ -414,8 +414,8 @@ namespace Allers
 				}
 			}
 			foreach (DictionaryEntry elemento in set) {
-				Console.WriteLine(elemento.Value);
-				Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
+				//Console.WriteLine(elemento.Value);
+				//Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
 				if (((Convert.ToInt32(elemento.Value)/count)>=topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH) ) {
 					try {
 						cleanList.Add(articulos.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
@@ -426,7 +426,8 @@ namespace Allers
 				}
 			}
 
-			Console.WriteLine(cleanList.Count());
+			articulos = cleanList;
+			Console.WriteLine(articulos.Count());
 		
 		}
 
