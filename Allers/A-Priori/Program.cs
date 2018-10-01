@@ -1,9 +1,11 @@
 ﻿using Allers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace A_Priori
@@ -20,9 +22,16 @@ namespace A_Priori
 			cargarDatos();
 
 			cargarTransacciones();
-			
-			#region Test
-			/*
+            //escoger nucleo del pc
+            Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(2);
+            //dar prioridad alta al nucleo
+
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+
+          
+            #region Test
+            /*
 			articulos.Add(new Articulo {itemName= "bread",itemCode=1 });
 			articulos.Add(new Articulo { itemName = "milk", itemCode = 2 });
 			articulos.Add(new Articulo { itemName = "beer", itemCode = 3 });
@@ -37,19 +46,38 @@ namespace A_Priori
 			transacciones.Add(new Itemset { articulos[4], articulos[7], articulos[6] });
 			transacciones.Add(new Itemset { articulos[7], articulos[1], articulos[2] });
 			*/
-			#endregion
-			ListaItemSet lista =APriori.DoApriori(transacciones,10);
-			Console.WriteLine(lista.ToString());
-			List<ReglaAsociacion> reglas=  APriori.Mine(transacciones,lista,50);
-			Console.WriteLine(reglas.Count());
-			reglas.ToList().ForEach(x => Console.WriteLine(x.ToString()));
+            #endregion
+            int i = 0;
+            while (i < 20)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                ListaItemSet lista = APriori.DoApriori(transacciones, 10);
+                //Console.WriteLine(lista.ToString());
+                List<ReglaAsociacion> reglas = APriori.Mine(transacciones, lista, 50);
+                //Console.WriteLine(reglas.Count());
+                //reglas.ToList().ForEach(x => Console.WriteLine(x.ToString()));
+                stopwatch.Stop();
+                Console.WriteLine(stopwatch.ElapsedMilliseconds);
+                i++;
+            }
+            
+        }
 
-		}
+        public static long TestFunction(long seed, int count)
+        {
+            long result = seed;
+            for (int i = 0; i < count; ++i)
+            {
+                result ^= i ^ seed; // Some useless bit operations
+            }
+            return result;
+        }
 
 
 
-		#region CargaDatos
-		public static void cargarDatos()
+        #region CargaDatos
+        public static void cargarDatos()
 		{
 
 			//var datosClientes = File.ReadLines("...\\...\\Clientes.csv");

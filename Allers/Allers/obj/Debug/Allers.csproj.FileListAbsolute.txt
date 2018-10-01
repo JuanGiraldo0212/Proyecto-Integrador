@@ -42,3 +42,12 @@ C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
+E:\Repos\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe.config
+E:\Repos\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe
+E:\Repos\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.pdb
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.Properties.Resources.resources
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.GenerateResource.cache
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
+E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
