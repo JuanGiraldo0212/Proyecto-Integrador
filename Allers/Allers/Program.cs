@@ -20,15 +20,15 @@ namespace Allers
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            //analisisFuerzaBruta();
-            FuercitaBruta principal = new FuercitaBruta();
-            principal.pruebaCombinaciones();
+            analisisFuerzaBruta();
+            //FuercitaBruta principal = new FuercitaBruta();
+            //principal.pruebaCombinaciones();
         }
         public static void analisisFuerzaBruta()
         {
             FuercitaBruta principal = new FuercitaBruta();
             principal.cargarDatos();
-            principal.cleanData(0.0002, 1.33959370123042E-05);
+            //principal.cleanData(0.0002, 1.33959370123042E-05);
             IEnumerable<IEnumerable<Articulo>> combinaciones = principal.GetPowerSet(principal.articulos);
             Console.Write("ITEMSETS RESULTANTES");
             combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
@@ -37,7 +37,7 @@ namespace Allers
                 i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                 Console.WriteLine("}");
             });
-            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, -1);
+            List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, 0.1);
             Console.Write("ITEMSETS FRECUENTES: " + listaFinal.Count() + "\n");
             listaFinal.OrderBy(x => x.getItemSet().Count()).ToList().ForEach(i =>
             {
@@ -60,7 +60,7 @@ namespace Allers
                 Console.Write("\n");
 
             });
-            principal.checkRules(-1);
+            principal.checkRules(0.5);
             Console.WriteLine("REGLAS QUE SUPERAN EL UMBRAL");
             principal.rules.ForEach(r =>
             {
