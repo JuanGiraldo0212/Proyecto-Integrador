@@ -37,8 +37,8 @@ namespace Allers
         {
 
             //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
-            var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
-            var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
+            var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
+            var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
 
 
 
@@ -83,9 +83,9 @@ namespace Allers
                 {
                     break;
                 }
-                cargarTransactions();
+                
             }
-
+            cargarTransactions();
             //Console.WriteLine(articulos.Count());
             //Console.WriteLine(ventas.Count());
         }
