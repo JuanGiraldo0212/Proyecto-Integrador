@@ -37,8 +37,8 @@ namespace Allers
         {
 
             //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
-            var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
-            var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
+            var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
+            var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
 
 
 
@@ -83,6 +83,7 @@ namespace Allers
                 {
                     break;
                 }
+                cargarTransactions();
             }
 
             //Console.WriteLine(articulos.Count());
@@ -115,7 +116,7 @@ namespace Allers
             articulosPrueba.Add(articulo4);
 
 
-            List<List<Articulo>> combinaciones = GetPowerSet(articulosPrueba);
+            IEnumerable<IEnumerable<Articulo>> combinaciones = GetPowerSet(articulosPrueba);
             Console.Write("ITEMSETS GENERADOS");
             combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
             {
@@ -371,14 +372,14 @@ namespace Allers
             }
         }
 
-        public List<transWithSupp> frequentItemSet(List<List<Articulo>> itemSets, double suppCountPar)
+        public List<transWithSupp> frequentItemSet(IEnumerable<IEnumerable<Articulo>> itemSets, double suppCountPar)
         {
             List<transWithSupp> transwithSuppList = new List<transWithSupp>();
             foreach (var s in itemSets)
             {
                 double transcount = transactions.Count;
-                double suppCount = calcSupport(s) / transcount;
-                transwithSuppList.Add(new transWithSupp(s, suppCount, calcSupport(s)));
+                double suppCount = calcSupport(s.ToList()) / transcount;
+                transwithSuppList.Add(new transWithSupp(s.ToList(), suppCount, calcSupport(s.ToList())));
 
             }
             return transwithSuppList.Where(c => c.getSupp() >= suppCountPar).ToList();
@@ -491,20 +492,13 @@ namespace Allers
             Console.WriteLine(cleanList.Count());
 
         }
-        public List<List<Articulo>> GetPowerSet<Articulo>(List<Articulo> list)
+        public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
         {
-            var lista =  from m in Enumerable.Range(0, 1 << list.Count)
+            return from m in Enumerable.Range(0, 1 << list.Count)
                    select
                        from i in Enumerable.Range(0, list.Count)
                        where (m & (1 << i)) != 0
                        select list[i];
-            List<List<Articulo>> powerSet = new List<List<Articulo>>();
-            for (int i = 0; i < lista.Count(); i++)
-            {
-                List<Articulo> set = lista.ElementAt(i).ToList();
-                powerSet.Add(set);
-            }
-            return powerSet;
         }
 
 
