@@ -11,7 +11,11 @@ namespace Allers.Clustering
     {
         List<Cliente> elementos { get; set; }
         double[] centroid { get; set; }
-        public Cluster(Cliente clienteCentroide)
+        double meanGroupName { get; set; }
+        double meanCity { get; set; }
+        double meanDpto { get; set; }
+        double meanPymntGroup { get; set; }
+        public Cluster(Cliente clientCentroid)
         {
           
         }
