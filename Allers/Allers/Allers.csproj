@@ -46,9 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="A-Priori\APriori.cs" />
+    <Compile Include="A-Priori\Program.cs" />
+    <Compile Include="A-Priori\ReglaAsociacion.cs" />
     <Compile Include="Articulo.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Clustering\Cluster.cs" />
+    <Compile Include="Clustering\Clustering.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +72,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="A-Priori\Articulos.csv" />
+    <None Include="A-Priori\Articulos2.csv" />
+    <None Include="A-Priori\Ventas.csv" />
+    <None Include="A-Priori\Ventas2.csv" />
     <None Include="Articulos.csv" />
     <None Include="Articulos2.csv" />
     <None Include="Clientes.csv" />
