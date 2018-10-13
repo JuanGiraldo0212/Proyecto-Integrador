@@ -10,15 +10,10 @@ namespace Allers.Clustering
     class Cluster
     {
         List<Cliente> elementos { get; set; }
-        Hashtable datosCliente { get; set; }
         double[] centroid { get; set; }
-        public Cluster(Hashtable datosCliente, Cliente clienteCentroide)
+        public Cluster(Cliente clienteCentroide)
         {
-            //this.datosCliente = datosCliente;
-            //centroid[0] = 
-            //centroid[0] =
-            //centroid[0] =
-            //centroid[0] =
+          
         }
         public void reCalculateCentroid()
         {

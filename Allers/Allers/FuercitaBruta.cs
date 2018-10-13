@@ -18,7 +18,7 @@ namespace Allers
         public List<List<Articulo>> transactions = new List<List<Articulo>>();
         public List<Rules> rules = new List<Rules>();
 
-        public Hashtable datosClientes = new Hashtable();
+        public static Hashtable datosClientes = new Hashtable();
         public List<Cliente> clientes = new List<Cliente>();
 
         public void setTransactions(List<List<Articulo>> newTransactions)
@@ -104,22 +104,29 @@ namespace Allers
             var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
             for (int i = 0; i < groupNames.Count(); i++)
             {
-                if (!this.datosClientes.ContainsKey(groupNames[i]))
-                    this.datosClientes.Add(groupNames[i], i);
+                if (!FuercitaBruta.datosClientes.ContainsKey(groupNames[i]))
+                    FuercitaBruta.datosClientes.Add(groupNames[i], i);
             }
 
             var cities = clientes.Select(i => i.City).Distinct().ToList();
             for (int i = 0; i < cities.Count(); i++)
             {
-                if (!this.datosClientes.ContainsKey(cities[i]))
-                    this.datosClientes.Add(cities[i], i);
+                if (!FuercitaBruta.datosClientes.ContainsKey(cities[i]))
+                    FuercitaBruta.datosClientes.Add(cities[i], i);
             }
 
             var dptos = clientes.Select(i => i.Dpto).Distinct().ToList();
             for (int i = 0; i < dptos.Count(); i++)
             {
-                if(!this.datosClientes.ContainsKey(dptos[i]))
-                this.datosClientes.Add(dptos[i], i);
+                if(!FuercitaBruta.datosClientes.ContainsKey(dptos[i]))
+                    FuercitaBruta.datosClientes.Add(dptos[i], i);
+            }
+
+            var pymnts = clientes.Select(i => i.PymntGruoup).Distinct().ToList();
+            for (int i = 0; i < dptos.Count(); i++)
+            {
+                if (!FuercitaBruta.datosClientes.ContainsKey(pymnts[i]))
+                    FuercitaBruta.datosClientes.Add(pymnts[i], i);
             }
 
             cargarTransactions();
