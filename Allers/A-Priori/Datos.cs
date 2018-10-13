@@ -78,7 +78,7 @@ namespace A_Priori
 						Cliente nuevo = new Cliente();
 						nuevo.CardCode = datos[0];
 						nuevo.GroupName = datos[1];
-						nuevo.Ciudad = datos[2];
+						nuevo.City = datos[2];
 						nuevo.Dpto = datos[3];
 						clientes.Add(nuevo);
 

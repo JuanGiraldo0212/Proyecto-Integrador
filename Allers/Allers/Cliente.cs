@@ -11,9 +11,11 @@ namespace Allers
 		 
 		public string CardCode { get; set; }
 		public string GroupName { get; set; }
-		public string Ciudad { get; set; }
+		public string City { get; set; }
 		public string Dpto { get; set; }
+        public string PymntGruoup { get; set; }
+        public double Purchases { get; set; }
 
-		public Cliente() { }
+        public Cliente() { }
 }
 }

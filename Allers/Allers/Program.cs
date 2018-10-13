@@ -41,7 +41,7 @@ namespace Allers
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                //principal.cleanData(0.0002, 1.33959370123042E-05);
+                principal.cleanData(0.0002, 1.33959370123042E-05);
                 IEnumerable<IEnumerable<Articulo>> combinaciones = principal.GetPowerSet(principal.articulos);
                 /*Console.Write("ITEMSETS RESULTANTES");
                 combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>

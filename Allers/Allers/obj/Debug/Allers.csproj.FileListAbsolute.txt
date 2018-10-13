@@ -51,3 +51,4 @@ E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.GenerateResou
 E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
 E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
 E:\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache

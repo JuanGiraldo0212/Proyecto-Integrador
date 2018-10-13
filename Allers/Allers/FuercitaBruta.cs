@@ -18,6 +18,9 @@ namespace Allers
         public List<List<Articulo>> transactions = new List<List<Articulo>>();
         public List<Rules> rules = new List<Rules>();
 
+        public Hashtable datosClientes = new Hashtable();
+        public List<Cliente> clientes = new List<Cliente>();
+
         public void setTransactions(List<List<Articulo>> newTransactions)
         {
             transactions = newTransactions;
@@ -36,11 +39,9 @@ namespace Allers
         public void cargarDatos()
         {
 
-            //var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
+            var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
             var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
             var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
-
-
 
             foreach (var s in datosVentas)
             {
@@ -83,8 +84,44 @@ namespace Allers
                 {
                     break;
                 }
-                
+
             }
+
+            foreach (var s in datosClientes)
+            {
+                String[] datos = s.Split(';');
+                if (datos[2] != "NULL" && datos[3] != "NULL" && datos[1] != "GroupName")
+                {
+                    Cliente nuevo = new Cliente();
+                    nuevo.CardCode = datos[0].Trim();
+                    nuevo.GroupName = datos[1].Trim();
+                    nuevo.City = datos[2].Trim();
+                    nuevo.Dpto = datos[3].Trim();
+                    nuevo.PymntGruoup = datos[4].Trim();
+                    clientes.Add(nuevo);
+                }
+            }
+            var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
+            for (int i = 0; i < groupNames.Count(); i++)
+            {
+                if (!this.datosClientes.ContainsKey(groupNames[i]))
+                    this.datosClientes.Add(groupNames[i], i);
+            }
+
+            var cities = clientes.Select(i => i.City).Distinct().ToList();
+            for (int i = 0; i < cities.Count(); i++)
+            {
+                if (!this.datosClientes.ContainsKey(cities[i]))
+                    this.datosClientes.Add(cities[i], i);
+            }
+
+            var dptos = clientes.Select(i => i.Dpto).Distinct().ToList();
+            for (int i = 0; i < dptos.Count(); i++)
+            {
+                if(!this.datosClientes.ContainsKey(dptos[i]))
+                this.datosClientes.Add(dptos[i], i);
+            }
+
             cargarTransactions();
             //Console.WriteLine(articulos.Count());
             //Console.WriteLine(ventas.Count());
