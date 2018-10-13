@@ -10,7 +10,7 @@ using System.Text;
 			ListaItemSet subsets = new ListaItemSet();
 
 			int subsetCount = (int)Math.Pow(2, itemset.Count);
-			for (int i = 0; i < subsetCount; i++)
+			for (int i = 0;true; i++)
 			{
 				if (n == 0 || GetOnCount(i, itemset.Count) == n)
 				{
