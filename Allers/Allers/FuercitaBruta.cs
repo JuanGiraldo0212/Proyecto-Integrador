@@ -90,7 +90,11 @@ namespace Allers
             foreach (var s in datosClientes)
             {
                 String[] datos = s.Split(';');
-                if (datos[2] != "NULL" && datos[3] != "NULL" && datos[1] != "GroupName")
+                if(datos.First().Equals(""))
+                {
+                    break;
+                }
+                if (!s.Equals("") && datos[2] != "NULL" && datos[3] != "NULL" && datos[1] != "GroupName")
                 {
                     Cliente nuevo = new Cliente();
                     nuevo.CardCode = datos[0].Trim();

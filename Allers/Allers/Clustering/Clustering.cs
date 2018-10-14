@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 		public double[] DatosPymnts = new double[2];
 		public Clustering(List<Cliente> clientes, int numberOfClusters)
 		{
-		this.clientes = clientes;
+		    this.clientes = clientes;
 
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
 			double suma1 = 0.0;
@@ -72,7 +72,7 @@ using System.Threading.Tasks;
 			//Console.WriteLine(DatosDptos[0]);
 			//Console.WriteLine(DatosCities[0]);
 			//Console.WriteLine(DatosPymnts[0]);
-		CalcularDesviaciones();
+		    CalcularDesviaciones();
 
             clusters = new Cluster[numberOfClusters];
             for (int i = 0; i < numberOfClusters; i++)
@@ -97,7 +97,7 @@ using System.Threading.Tasks;
 		}
 		public void CalcularDesviaciones() {
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
-		Console.WriteLine(clientes.Count);
+		    Console.WriteLine(clientes.Count);
 			double suma1 = 0;
 			var cities = clientes.Select(i => i.City).Distinct().ToList();
 			double suma2 = 0;
@@ -154,11 +154,13 @@ using System.Threading.Tasks;
         }
         public void findClusters()
         {
-            bool changes = false;
-            do
+            bool changes = true;
+            while (changes)
             {
+                changes = false;
                 foreach (Cliente actual in clientes)
                 {
+                    
                     bool asigned = false;
                     double[] d = distances(actual);
                     double minimum = d.Min();
@@ -170,15 +172,20 @@ using System.Threading.Tasks;
                             {
                                 cluster.elementos.Remove(actual);
                             }
-                            clusters[i].elementos.Add(actual);
-                            ReCalculateCentroid(clusters[i]);
-                            changes = true;
-                            asigned = true;
+                            if(!clusters[i].elementos.Contains(actual))
+                            {
+                                clusters[i].elementos.Add(actual);
+                                changes = true;
+                                asigned = true;
+                                ReCalculateCentroid(clusters[i]);
+                            }
                         }
                     }
                 }
+            Console.WriteLine("Hole");
+            
             }
-            while (changes);
+            
             
         }
     }
