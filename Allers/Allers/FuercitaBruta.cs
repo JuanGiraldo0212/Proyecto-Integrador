@@ -40,52 +40,52 @@ namespace Allers
         {
 
             var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
-            var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
-            var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
+            //var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
+            //var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
 
-            foreach (var s in datosVentas)
-            {
-                String[] datos = s.Split(';');
-                if (datos[4] != "NULL" && datos[4] != "ItemCode")
-                {
+            //foreach (var s in datosVentas)
+            //{
+            //    String[] datos = s.Split(';');
+            //    if (datos[4] != "NULL" && datos[4] != "ItemCode")
+            //    {
 
-                    Venta nueva = new Venta();
-                    nueva.cardCode = datos[0];
-                    nueva.docNum = (datos[1]);
-                    nueva.docDate = datos[2];
-                    nueva.docTotal = Convert.ToDouble(datos[3]);
-                    nueva.itemCode = datos[4];
-                    nueva.cantidad = Convert.ToInt32(datos[5]);
-                    nueva.precio = Convert.ToDouble(datos[6]);
-                    nueva.lineaTotal = Convert.ToDouble(datos[7]);
-                    ventas.Add(nueva);
+            //        Venta nueva = new Venta();
+            //        nueva.cardCode = datos[0];
+            //        nueva.docNum = (datos[1]);
+            //        nueva.docDate = datos[2];
+            //        nueva.docTotal = Convert.ToDouble(datos[3]);
+            //        nueva.itemCode = datos[4];
+            //        nueva.cantidad = Convert.ToInt32(datos[5]);
+            //        nueva.precio = Convert.ToDouble(datos[6]);
+            //        nueva.lineaTotal = Convert.ToDouble(datos[7]);
+            //        ventas.Add(nueva);
 
 
 
-                }
-            }
+            //    }
+            //}
 
-            foreach (var s in datosArticulos)
-            {
-                String[] datos = s.Split(';');
-                if (datos.Length > 1)
-                {
-                    if (datos[1] != "********" && datos[1] != "ItemName")
-                    {
+            //foreach (var s in datosArticulos)
+            //{
+            //    String[] datos = s.Split(';');
+            //    if (datos.Length > 1)
+            //    {
+            //        if (datos[1] != "********" && datos[1] != "ItemName")
+            //        {
 
-                        Articulo nuevo = new Articulo();
-                        nuevo.itemCode = Convert.ToInt32(datos[0]);
-                        nuevo.itemName = datos[1];
-                        articulos.Add(nuevo);
+            //            Articulo nuevo = new Articulo();
+            //            nuevo.itemCode = Convert.ToInt32(datos[0]);
+            //            nuevo.itemName = datos[1];
+            //            articulos.Add(nuevo);
 
-                    }
-                }
-                else
-                {
-                    break;
-                }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
 
-            }
+            //}
 
             foreach (var s in datosClientes)
             {

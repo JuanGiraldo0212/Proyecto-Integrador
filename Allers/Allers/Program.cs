@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static Allers.FuercitaBruta;
 using System.Diagnostics;
 using System.Threading;
@@ -17,20 +12,39 @@ namespace Allers
         /// Punto de entrada principal para la aplicación.
         /// </summary>
         [MTAThread]
-        static void Main()
+        public static void Main()
         {
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             //escoger nucleo del pc
-            Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
+            //Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
             //dar prioridad alta al nucleo
 
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            Thread.CurrentThread.Priority = ThreadPriority.Highest;
-            analisisFuerzaBruta();
-            //FuercitaBruta principal = new FuercitaBruta();
-            //principal.pruebaCombinaciones();
+            //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            //Thread.CurrentThread.Priority = ThreadPriority.Highest;
+            //analisisFuerzaBruta();
+            analisisClustering();
+
+            
+            
+        }
+        public static void analisisClustering()
+        {
+            FuercitaBruta principal = new FuercitaBruta();
+            principal.cargarDatos();
+            Clustering clustering = new Clustering(principal.clientes, 3);
+            Cluster[] clusters = clustering.clusters;
+            for (int i = 0; i < clusters.Length; i++)
+            {
+                Console.Write("{");
+                foreach(Cliente actual in clusters[i].elementos)
+                {
+                    Console.Write(actual.CardCode + ",");
+                }
+                Console.WriteLine("}");
+
+            }
         }
         public static void analisisFuerzaBruta()
         {
