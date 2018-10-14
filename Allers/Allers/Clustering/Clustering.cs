@@ -16,9 +16,9 @@ using System.Threading.Tasks;
 		public double[] DatosCities = new double[2];
 		public double[] DatosDptos = new double[2];
 		public double[] DatosPymnts = new double[2];
-		public Clustering(List<Cliente> clientes, int numberOfClusters)
+		public Clustering(List<Cliente> clientess, int numberOfClusters)
 		{
-		    this.clientes = clientes;
+		    clientes = clientess;
 
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
 			double suma1 = 0.0;
@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 			{
 				if (!datosClientes.ContainsKey(groupNames[i]))
 				{
-					datosClientes.Add(groupNames[i], i);
+					datosClientes.Add(groupNames[i], i+1);
 					suma1 += i;
 				}
 
@@ -39,7 +39,7 @@ using System.Threading.Tasks;
 			{
 				if (!datosClientes.ContainsKey(cities[i]))
 				{
-					datosClientes.Add(cities[i], i);
+					datosClientes.Add(cities[i], i+1);
 					suma2 += i;
 				}
 			}
@@ -51,7 +51,7 @@ using System.Threading.Tasks;
 			{
 				if (!datosClientes.ContainsKey(dptos[i]))
 				{
-					datosClientes.Add(dptos[i], i);
+					datosClientes.Add(dptos[i], i+1);
 					suma3 += i;
 				}
 			}
@@ -63,7 +63,7 @@ using System.Threading.Tasks;
 			{
 				if (!datosClientes.ContainsKey(pymnts[i]))
 				{
-					datosClientes.Add(pymnts[i], i);
+					datosClientes.Add(pymnts[i], i+1);
 					suma4 += i;
 				}
 			}
@@ -126,15 +126,28 @@ using System.Threading.Tasks;
 			}
 			DatosPymnts[1] = Math.Sqrt(suma4 / pymnts.Count);
 		}
-        public void ReCalculateCentroid(Cluster cluster)
+        public void ReCalculateCentroids()
         {
-            double[] datos = new double[4];
-            IEnumerable<double[]> sums = cluster.elementos.Select(i => Normalizar(i));
-            datos[0] = sums.Average(j => j[0]);
-            datos[1] = sums.Average(j => j[1]);
-            datos[2] = sums.Average(j => j[2]);
-            datos[3] = sums.Average(j => j[3]);
-            cluster.centroid = datos; 
+            foreach(Cluster cluster in clusters)
+            {
+            if (cluster.elementos.Count() != 0)
+            {
+                double[] datos = new double[4];
+                IEnumerable<double[]> sums = cluster.elementos.Select(i => Normalizar(i));
+                datos[0] = sums.Average(j => j[0]);
+                datos[1] = sums.Average(j => j[1]);
+                datos[2] = sums.Average(j => j[2]);
+                datos[3] = sums.Average(j => j[3]);
+                cluster.centroid = datos;
+            }
+            else
+            {
+                List<double> centroid = new List<double> { 0, 0, 0, 0 };
+                cluster.centroid = centroid.ToArray();
+
+            }
+            }
+            
         }
         public double[] distances(Cliente cliente)
         {
@@ -170,6 +183,7 @@ using System.Threading.Tasks;
                         {
                             foreach(Cluster cluster in clusters)
                             {
+                                if(clusters[i] != cluster)
                                 cluster.elementos.Remove(actual);
                             }
                             if(!clusters[i].elementos.Contains(actual))
@@ -177,7 +191,7 @@ using System.Threading.Tasks;
                                 clusters[i].elementos.Add(actual);
                                 changes = true;
                                 asigned = true;
-                                ReCalculateCentroid(clusters[i]);
+                                ReCalculateCentroids();
                             }
                         }
                     }

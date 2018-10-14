@@ -90,7 +90,7 @@ namespace Allers
             foreach (var s in datosClientes)
             {
                 String[] datos = s.Split(';');
-                if(datos.First().Equals(""))
+                if(s.Equals(""))
                 {
                     break;
                 }

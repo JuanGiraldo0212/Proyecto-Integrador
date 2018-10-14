@@ -33,7 +33,7 @@ namespace Allers
         {
             FuercitaBruta principal = new FuercitaBruta();
             principal.cargarDatos();
-            Clustering clustering = new Clustering(principal.clientes, 3);
+            Clustering clustering = new Clustering(principal.clientes, 5);
             Cluster[] clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {
