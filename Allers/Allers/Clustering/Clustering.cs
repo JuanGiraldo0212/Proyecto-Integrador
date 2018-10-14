@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 		public double[] DatosPymnts = new double[2];
 		public Clustering(List<Cliente> clientes, int numberOfClusters)
 		{
-			
+		this.clientes = clientes;
 
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
 			double suma1 = 0.0;
@@ -68,7 +68,11 @@ using System.Threading.Tasks;
 				}
 			}
 			DatosPymnts[0] = suma4 / pymnts.Count;
-            CalcularDesviaciones();
+			//Console.WriteLine(DatosGroupNames[0]);
+			//Console.WriteLine(DatosDptos[0]);
+			//Console.WriteLine(DatosCities[0]);
+			//Console.WriteLine(DatosPymnts[0]);
+		CalcularDesviaciones();
 
             clusters = new Cluster[numberOfClusters];
             for (int i = 0; i < numberOfClusters; i++)
@@ -93,6 +97,7 @@ using System.Threading.Tasks;
 		}
 		public void CalcularDesviaciones() {
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
+		Console.WriteLine(clientes.Count);
 			double suma1 = 0;
 			var cities = clientes.Select(i => i.City).Distinct().ToList();
 			double suma2 = 0;
@@ -101,23 +106,23 @@ using System.Threading.Tasks;
 			var pymnts = clientes.Select(i => i.PymntGruoup).Distinct().ToList();
 			double suma4 = 0;
 			foreach (var s in groupNames) {
-				suma1 += Math.Pow(((double)datosClientes[s])-DatosGroupNames[0],2);
+				suma1 += Math.Pow(Convert.ToDouble(datosClientes[s])-DatosGroupNames[0],2);
 			}
 			DatosGroupNames[1] = Math.Sqrt(suma1 / groupNames.Count);
 
 			foreach (var s in cities)
 			{
-				suma2 += Math.Pow(((double)datosClientes[s]) - DatosCities[0], 2);
+				suma2 += Math.Pow(Convert.ToDouble(datosClientes[s]) - DatosCities[0], 2);
 			}
 			DatosCities[1] = Math.Sqrt(suma2 / cities.Count);
 			foreach (var s in dptos)
 			{
-				suma3 += Math.Pow(((double)datosClientes[s]) - DatosDptos[0], 2);
+				suma3 += Math.Pow(Convert.ToDouble(datosClientes[s]) - DatosDptos[0], 2);
 			}
 			DatosDptos[1] = Math.Sqrt(suma3 / dptos.Count);
 			foreach (var s in pymnts)
 			{
-				suma4 += Math.Pow(((double)datosClientes[s]) - DatosPymnts[0], 2);
+				suma4 += Math.Pow(Convert.ToDouble(datosClientes[s]) - DatosPymnts[0], 2);
 			}
 			DatosPymnts[1] = Math.Sqrt(suma4 / pymnts.Count);
 		}

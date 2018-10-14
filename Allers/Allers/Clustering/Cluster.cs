@@ -15,6 +15,7 @@ using System.Threading.Tasks;
         public Cluster(double[] centroid, Cliente clienteCentroide)
         {
             this.centroid = centroid;
+		elementos = new List<Cliente>();
             elementos.Add(clienteCentroide);
         } 
 
