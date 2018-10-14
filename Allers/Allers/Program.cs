@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using static Allers.FuercitaBruta;
 using System.Diagnostics;
 using System.Threading;
+using System.Linq;
 
 namespace Allers
 {
@@ -24,17 +25,18 @@ namespace Allers
             //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
             //Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            analisisClustering();
+            analisisClustering(6);
 
             
             
         }
-        public static void analisisClustering()
+        public static void analisisClustering(int clustersNumber)
         {
             FuercitaBruta principal = new FuercitaBruta();
             principal.cargarDatos();
-            Clustering clustering = new Clustering(principal.clientes, 5);
+            Clustering clustering = new Clustering(principal.clientes, clustersNumber);
             Cluster[] clusters = clustering.clusters;
+            Console.WriteLine("CLUSTERS:");
             for (int i = 0; i < clusters.Length; i++)
             {
                 Console.Write("{");
@@ -45,6 +47,10 @@ namespace Allers
                 Console.WriteLine("}");
 
             }
+            Console.WriteLine("CLIENTES EXISTENTES:");
+            Console.WriteLine(principal.clientes.Count());
+            Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
+            Console.WriteLine(clustering.clusters.Sum(i => i.elementos.Count()));
         }
         public static void analisisFuerzaBruta()
         {
