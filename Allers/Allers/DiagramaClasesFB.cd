@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Allers.FuercitaBruta">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="darArticulos" Hidden="true" />
+      <Method Name="darVentas" Hidden="true" />
+      <Method Name="pruebaCombinaciones" Hidden="true" />
+      <Method Name="setTransactions" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Allers.FuercitaBruta.transWithSupp">
+        <TypeIdentifier>
+          <NewMemberFileName>FuercitaBruta.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Allers.FuercitaBruta.Rules">
+        <TypeIdentifier>
+          <NewMemberFileName>FuercitaBruta.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>oAABAgIAEAAAAAAAQAgAIBAAAACAIACAAYIAKAABwEA=</HashCode>
+      <FileName>FuercitaBruta.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="transactions" />
+      <Field Name="rules" />
+      <Field Name="datosClientes" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="articulos" />
+      <Field Name="ventas" />
+      <Field Name="clientes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Allers.Articulo">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Articulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Allers.Cliente">
+    <Position X="4.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAIAACAAAAAAAAAAAEAAAAAAAAAAAE=</HashCode>
+      <FileName>Cliente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.Generic.List&lt;T&gt;">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="System.Collections.Generic.List&lt;T&gt;.Enumerator" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Collections.Hashtable">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Allers.Venta">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAARAAAAAAAAAAAQACEgAAAAQAAAAAAAA=</HashCode>
+      <FileName>Venta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APriori">
+    <Position X="13.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAEAAAAAAQAAAAQAAABAAAAACAAAAAAAAEIAA=</HashCode>
+      <FileName>A priori\APriori.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="allRules" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ReglaAsociacion">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAIAAAAgAAAAAAgAAYAA=</HashCode>
+      <FileName>A priori\ReglaAsociacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cluster">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clustering\Cluster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustering">
+    <Position X="15" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAABQAAAAAABABAAAEAIIgAAIIAAAAAAQAA=</HashCode>
+      <FileName>Clustering\Clustering.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="datosClientes" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="clientes" />
+      <Field Name="clusters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
