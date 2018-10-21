@@ -25,8 +25,8 @@ namespace Allers
             //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
             //Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            analisisClustering(6);
-
+            analisisClustering(4);
+            
             
             
         }
@@ -45,7 +45,13 @@ namespace Allers
                     Console.Write(actual.CardCode + ",");
                 }
                 Console.WriteLine("}");
-
+                Console.WriteLine("Elementos: " + clusters[i].elementos.Count());
+                Console.WriteLine("CENTROIDE:");
+                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.GroupName])))));
+                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.City])))));
+                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.Dpto])))));
+                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.PymntGruoup])))));
+                Console.WriteLine(clusters[i].elementos.Average(j => j.Purchases));
             }
             Console.WriteLine("CLIENTES EXISTENTES:");
             Console.WriteLine(principal.clientes.Count());

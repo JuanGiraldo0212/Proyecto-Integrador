@@ -105,35 +105,8 @@ namespace Allers
                     clientes.Add(nuevo);
                 }
             }
-            var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
-            for (int i = 0; i < groupNames.Count(); i++)
-            {
-                if (!FuercitaBruta.datosClientes.ContainsKey(groupNames[i]))
-                    FuercitaBruta.datosClientes.Add(groupNames[i], i);
-            }
-
-            var cities = clientes.Select(i => i.City).Distinct().ToList();
-            for (int i = 0; i < cities.Count(); i++)
-            {
-                if (!FuercitaBruta.datosClientes.ContainsKey(cities[i]))
-                    FuercitaBruta.datosClientes.Add(cities[i], i);
-            }
-
-            var dptos = clientes.Select(i => i.Dpto).Distinct().ToList();
-            for (int i = 0; i < dptos.Count(); i++)
-            {
-                if(!FuercitaBruta.datosClientes.ContainsKey(dptos[i]))
-                    FuercitaBruta.datosClientes.Add(dptos[i], i);
-            }
-
-            var pymnts = clientes.Select(i => i.PymntGruoup).Distinct().ToList();
-            for (int i = 0; i < dptos.Count(); i++)
-            {
-                if (!FuercitaBruta.datosClientes.ContainsKey(pymnts[i]))
-                    FuercitaBruta.datosClientes.Add(pymnts[i], i);
-            }
-
             cargarTransactions();
+            calculatePursaches();
             //Console.WriteLine(articulos.Count());
             //Console.WriteLine(ventas.Count());
         }
@@ -143,10 +116,11 @@ namespace Allers
             {
                 double pursaches = 0;
                 var sales = ventas.Where(i => i.cardCode.Equals(actual.CardCode));
-                foreach (Venta venta in ventas)
+                foreach (Venta venta in sales)
                 {
                     pursaches += venta.lineaTotal;
                 }
+                actual.Purchases = pursaches;
             }
         }
         public void pruebaCombinaciones()

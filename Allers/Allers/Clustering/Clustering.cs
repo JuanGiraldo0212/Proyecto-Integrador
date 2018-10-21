@@ -10,6 +10,7 @@ using System.Threading.Tasks;
     class Clustering
     {
         public static Hashtable datosClientes = new Hashtable();
+        public static Hashtable datosClientesInv = new Hashtable();
         public List<Cliente> clientes = new List<Cliente>();
         public Cluster[] clusters;
 		public double[] DatosGroupNames = new double[2];
@@ -20,42 +21,50 @@ using System.Threading.Tasks;
 		public Clustering(List<Cliente> clientess, int numberOfClusters)
 		{
 		    clientes = clientess;
-
+            int contador = 1;
 			var groupNames = clientes.Select(i => i.GroupName).Distinct().ToList();
 			for (int i = 0; i < groupNames.Count; i++)
 			{
-				if (!datosClientes.ContainsKey(groupNames[i]))
+				if (!datosClientes.ContainsKey(groupNames[i]) && !datosClientesInv.ContainsKey(contador))
 				{
-					datosClientes.Add(groupNames[i], i+1);
-				}
+					datosClientes.Add(groupNames[i], contador);
+                    datosClientesInv.Add(contador, groupNames[i]);
+                    contador++;
+                }
 
 			}
 
 			var cities = clientes.Select(i => i.City).Distinct().ToList();
 			for (int i = 0; i < cities.Count(); i++)
 			{
-				if (!datosClientes.ContainsKey(cities[i]))
+				if (!datosClientes.ContainsKey(cities[i]) && !datosClientesInv.ContainsKey(contador))
 				{
-					datosClientes.Add(cities[i], i+1);
-				}
+					datosClientes.Add(cities[i], contador);
+                    datosClientesInv.Add(contador, cities[i]);
+                    contador++;
+                }
 			}
 
 			var dptos = clientes.Select(i => i.Dpto).Distinct().ToList();
 			for (int i = 0; i < dptos.Count(); i++)
 			{
-				if (!datosClientes.ContainsKey(dptos[i]))
+				if (!datosClientes.ContainsKey(dptos[i]) && !datosClientesInv.ContainsKey(contador))
 				{
-					datosClientes.Add(dptos[i], i+1);
-				}
+					datosClientes.Add(dptos[i], contador);
+                    datosClientesInv.Add(contador, dptos[i]);
+                    contador++;
+                }
 			}
 
 			var pymnts = clientes.Select(i => i.PymntGruoup).Distinct().ToList();
 			for (int i = 0; i < dptos.Count(); i++)
 			{
-				if (!datosClientes.ContainsKey(pymnts[i]))
+				if (!datosClientes.ContainsKey(pymnts[i]) && !datosClientesInv.ContainsKey(contador))
 				{
-					datosClientes.Add(pymnts[i], i+1);
-				}
+					datosClientes.Add(pymnts[i], contador);
+                    datosClientesInv.Add(contador, pymnts[i]);
+                    contador++;
+                }
 			}
         //Console.WriteLine(DatosGroupNames[0]);
         //Console.WriteLine(DatosDptos[0]);
@@ -73,6 +82,19 @@ using System.Threading.Tasks;
             findClusters();
         }
 
+        public static string hashInv(double value)
+        {
+        string key = "hehe";
+        int value1 = (int)value;
+        foreach(string actual in datosClientes.Keys)
+        {
+            if(Convert.ToInt32(datosClientes[actual]) == value1)
+            {
+                key = actual;
+            }
+        }
+        return key;
+        }
 		public double[] Normalizar(Cliente actual) {
 
 			double[] datos = new double[5];
@@ -102,7 +124,9 @@ using System.Threading.Tasks;
 			double suma3 = 0;
 			var pymnts = clientes.Select(i => i.PymntGruoup).ToList();
 			double suma4 = 0;
-			foreach (var s in groupNames) {
+        var prs = clientes.Select(i => i.Purchases).ToList();
+        double suma5 = 0;
+        foreach (var s in groupNames) {
 				suma1 += Math.Pow(Convert.ToDouble(datosClientes[s])-DatosGroupNames[0],2);
 			}
 			DatosGroupNames[1] = Math.Sqrt(suma1 / groupNames.Count);
@@ -122,7 +146,12 @@ using System.Threading.Tasks;
 				suma4 += Math.Pow(Convert.ToDouble(datosClientes[s]) - DatosPymnts[0], 2);
 			}
 			DatosPymnts[1] = Math.Sqrt(suma4 / pymnts.Count);
-		}
+        foreach (var s in prs)
+        {
+            suma5 += Math.Pow(s - DatosPymnts[0], 2);
+        }
+        DatosPursaches[1] = Math.Sqrt(suma5 / pymnts.Count);
+    }
         public void ReCalculateCentroids()
         {
             foreach(Cluster cluster in clusters)
@@ -135,7 +164,7 @@ using System.Threading.Tasks;
                 datos[1] = sums.Average(j => j[1]);
                 datos[2] = sums.Average(j => j[2]);
                 datos[3] = sums.Average(j => j[3]);
-               // datos[4] = sums.Average(j => j[4]);
+                datos[4] = sums.Average(j => j[4]);
                 cluster.centroid = datos;
             }
             else
