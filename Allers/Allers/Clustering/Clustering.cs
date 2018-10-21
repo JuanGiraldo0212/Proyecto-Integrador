@@ -70,8 +70,8 @@ using System.Threading.Tasks;
         //Console.WriteLine(DatosDptos[0]);
         //Console.WriteLine(DatosCities[0]);
         //Console.WriteLine(DatosPymnts[0]);
-        CalcularDesviaciones();
-        CalculateMeans();
+            CalcularDesviaciones();
+            CalculateMeans();
             clusters = new Cluster[numberOfClusters];
             for (int i = 0; i < numberOfClusters; i++)
             {
