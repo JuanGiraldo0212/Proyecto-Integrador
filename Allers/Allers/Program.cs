@@ -4,6 +4,7 @@ using static Allers.FuercitaBruta;
 using System.Diagnostics;
 using System.Threading;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Allers
 {
@@ -15,21 +16,23 @@ namespace Allers
         [MTAThread]
         public static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            //escoger nucleo del pc
-            //Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
-            //dar prioridad alta al nucleo
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new PanelMenu());
+			Application.Run(new PanelInicio());
+			//Application.Run(new PanelProductos());
+			//escoger nucleo del pc
+			//Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
+			//dar prioridad alta al nucleo
 
-            //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            //Thread.CurrentThread.Priority = ThreadPriority.Highest;
-            //analisisFuerzaBruta();
-            analisisClustering(4);
-            
-            
-            
-        }
+			//Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+			//Thread.CurrentThread.Priority = ThreadPriority.Highest;
+			//analisisFuerzaBruta();
+			//analisisClustering(4);
+
+
+
+		}
         public static void analisisClustering(int clustersNumber)
         {
             FuercitaBruta principal = new FuercitaBruta();
