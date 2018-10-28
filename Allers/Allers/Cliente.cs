@@ -14,8 +14,9 @@ namespace Allers
 		public string City { get; set; }
 		public string Dpto { get; set; }
         public string PymntGruoup { get; set; }
+        public double[] items { get; set; }
         public double Purchases { get; set; }
 
-        public Cliente() { }
+        public Cliente() {}
 }
 }
