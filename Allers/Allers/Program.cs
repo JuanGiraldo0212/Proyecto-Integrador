@@ -26,15 +26,14 @@ namespace Allers
             //Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
             analisisClustering(4);
-            
-            
-            
+
+
         }
         public static void analisisClustering(int clustersNumber)
         {
             FuercitaBruta principal = new FuercitaBruta();
             principal.cargarDatos();
-            Clustering clustering = new Clustering(principal.clientes, clustersNumber);
+            Clustering clustering = new Clustering(principal.clientes,clustersNumber, principal.articulos.Count());
             Cluster[] clusters = clustering.clusters;
             Console.WriteLine("CLUSTERS:");
             for (int i = 0; i < clusters.Length; i++)
@@ -47,11 +46,13 @@ namespace Allers
                 Console.WriteLine("}");
                 Console.WriteLine("Elementos: " + clusters[i].elementos.Count());
                 Console.WriteLine("CENTROIDE:");
-                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.GroupName])))));
-                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.City])))));
-                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.Dpto])))));
-                Console.WriteLine(Clustering.hashInv(Math.Round(clusters[i].elementos.Average(j => Convert.ToDouble(Clustering.datosClientes[j.PymntGruoup])))));
-                Console.WriteLine(clusters[i].elementos.Average(j => j.Purchases));
+                for(int j = 0; j < clusters[i].centroid.Count(); j++)
+                {
+                    if(clusters[i].centroid[j] == 1)
+                    {
+                        Console.WriteLine(principal.articulos.ElementAt(j).itemName);
+                    }
+                }
             }
             Console.WriteLine("CLIENTES EXISTENTES:");
             Console.WriteLine(principal.clientes.Count());

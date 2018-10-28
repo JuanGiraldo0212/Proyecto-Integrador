@@ -40,13 +40,13 @@ namespace Allers
         {
 
             var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
-            var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
-            var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
+            var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
+            var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
 
             foreach (var s in datosVentas)
             {
                 String[] datos = s.Split(';');
-                if (datos[4] != "NULL" && datos[4] != "ItemCode")
+                if (!s.Equals("") && datos[4] != "NULL" && datos[4] != "ItemCode")
                 {
 
                     Venta nueva = new Venta();
@@ -102,6 +102,7 @@ namespace Allers
                     nuevo.City = datos[2].Trim();
                     nuevo.Dpto = datos[3].Trim();
                     nuevo.PymntGruoup = datos[4].Trim();
+                    nuevo.items = new double[articulos.Count()];
                     clientes.Add(nuevo);
                 }
             }
@@ -109,6 +110,25 @@ namespace Allers
             calculatePursaches();
             //Console.WriteLine(articulos.Count());
             //Console.WriteLine(ventas.Count());
+            for(int i = 0; i<articulos.Count(); i++)
+            {
+                foreach(Venta venta in ventas)
+                {
+                    
+                    Console.WriteLine(venta.itemCode);
+                    Console.WriteLine(articulos[i].itemCode);
+                    if (venta.itemCode.Equals(articulos[i].itemCode+""))
+                    {
+                        try
+                        {
+                            clientes.First(k => k.CardCode.Equals(venta.cardCode)).items[i] = 1;
+                            Console.WriteLine("holi");
+                        }
+                        catch { }
+                    }
+                }
+            }
+            int h = 0;
         }
         public void calculatePursaches()
         {
