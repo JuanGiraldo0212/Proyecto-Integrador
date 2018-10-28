@@ -1,6 +1,6 @@
 ﻿namespace Allers
 {
-	public class Venta
+	public class Sale
 	{
 
 		public string cardCode { get; set; }
@@ -8,12 +8,12 @@
 		public string docDate { get; set; }
 		public double docTotal { get; set; }
 		public string itemCode { get; set; }
-		public int cantidad { get; set; }
-		public double precio { get; set; }
-		public double lineaTotal { get; set; }
+		public int amount { get; set; }
+		public double price { get; set; }
+		public double totalLine { get; set; }
 		
 
-		public Venta()
+		public Sale()
 		{
 			
 		}

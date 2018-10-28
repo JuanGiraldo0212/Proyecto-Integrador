@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Allers
 {
-	public class Cliente
+	public class Client
 	{
 		 
 		public string CardCode { get; set; }
@@ -17,6 +17,6 @@ namespace Allers
         public double[] items { get; set; }
         public double Purchases { get; set; }
 
-        public Cliente() {}
+        public Client() {}
 }
 }

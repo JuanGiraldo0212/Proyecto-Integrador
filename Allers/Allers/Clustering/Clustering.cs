@@ -10,16 +10,16 @@ using System.Threading.Tasks;
     class Clustering
     {
 
-        public List<Cliente> clients = new List<Cliente>();
+        public List<Client> clients = new List<Client>();
         public Cluster[] clusters;
-		public Clustering(List<Cliente> clientss, int numberOfClusters, int numberOfProducts)
+		public Clustering(List<Client> clientss, int numberOfClusters, int numberOfProducts)
 		{
 		    clients = clientss;
             clusters = new Cluster[numberOfClusters];
             for (int i = 0; i < numberOfClusters; i++)
             {
                 Random r = new Random();
-                Cliente centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
+                Client centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
                 clusters[i] = new Cluster(centroid.items, centroid);
             }
           findClusters();
@@ -28,12 +28,12 @@ using System.Threading.Tasks;
         {
             foreach(Cluster cluster in clusters)
             {
-            if (cluster.elementos.Count() != 0)
+            if (cluster.itemsCluster.Count() != 0)
             {
                 double[] datos = new double[cluster.centroid.Count()];
                 for (int j = 0; j < cluster.centroid.Count(); j++)
                 {
-                    datos[j] = cluster.elementos.Average(h => h.items[j]);
+                    datos[j] = cluster.itemsCluster.Average(h => h.items[j]);
                 }
                 cluster.centroid = datos;
             }
@@ -45,7 +45,7 @@ using System.Threading.Tasks;
             }
             
         }
-        public double[] distances(Cliente cliente)
+        public double[] distances(Client cliente)
         {
             double[] distances = new double[clusters.Count()];
             for(int i = 0; i < clusters.Count(); i++)
@@ -67,7 +67,7 @@ using System.Threading.Tasks;
             while (changes)
             {
                 changes = false;
-                foreach (Cliente actual in clients)
+                foreach (Client actual in clients)
                 {
                     
                     bool asigned = false;
@@ -80,11 +80,11 @@ using System.Threading.Tasks;
                             foreach(Cluster cluster in clusters)
                             {
                                 if(clusters[i] != cluster)
-                                cluster.elementos.Remove(actual);
+                                cluster.itemsCluster.Remove(actual);
                             }
-                            if(!clusters[i].elementos.Contains(actual))
+                            if(!clusters[i].itemsCluster.Contains(actual))
                             {
-                                clusters[i].elementos.Add(actual);
+                                clusters[i].itemsCluster.Add(actual);
                                 changes = true;
                                 asigned = true;
                                 ReCalculateCentroids();

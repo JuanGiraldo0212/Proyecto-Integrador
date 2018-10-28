@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Allers.FuercitaBruta;
+using static Allers.BruteForce;
 using System.Diagnostics;
 using System.Threading;
 using System.Linq;
@@ -26,51 +26,51 @@ namespace Allers
             //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
             //Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            analisisClustering(4);
-
-
+            ClusteringAnalysis(4);
+            
         }
-        public static void analisisClustering(int clustersNumber)
+        public static void ClusteringAnalysis(int clustersNumber)
         {
-            FuercitaBruta principal = new FuercitaBruta();
-            principal.cargarDatos();
-            Clustering clustering = new Clustering(principal.clientes,clustersNumber, principal.articulos.Count());
+            
+            BruteForce main = new BruteForce();
+            //main.loadData();
+            Clustering clustering = new Clustering(main.getContext().listClients, clustersNumber, main.getContext().listItems.Count());
             Cluster[] clusters = clustering.clusters;
             Console.WriteLine("CLUSTERS:");
             for (int i = 0; i < clusters.Length; i++)
             {
                 Console.Write("{");
-                foreach(Cliente actual in clusters[i].elementos)
+                foreach(Client actual in clusters[i].itemsCluster)
                 {
                     Console.Write(actual.CardCode + ",");
                 }
                 Console.WriteLine("}");
-                Console.WriteLine("Elementos: " + clusters[i].elementos.Count());
+                Console.WriteLine("Elementos: " + clusters[i].itemsCluster.Count());
                 Console.WriteLine("CENTROIDE:");
                 for(int j = 0; j < clusters[i].centroid.Count(); j++)
                 {
                     if(clusters[i].centroid[j] == 1)
                     {
-                        Console.WriteLine(principal.articulos.ElementAt(j).itemName);
+                        Console.WriteLine(main.getContext().listItems.ElementAt(j).itemName);
                     }
                 }
             }
             Console.WriteLine("CLIENTES EXISTENTES:");
-            Console.WriteLine(principal.clientes.Count());
+            Console.WriteLine(main.getContext().listClients.Count());
             Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
-            Console.WriteLine(clustering.clusters.Sum(i => i.elementos.Count()));
+            Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
         }
-        public static void analisisFuerzaBruta()
+        public static void bruteForceAnalysis()
         {
-            FuercitaBruta principal = new FuercitaBruta();
-            principal.cargarDatos();
+            BruteForce mainBF = new BruteForce();
+            mainBF.getContext().loadData();
             int i = 0;
             while (i < 20)
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                principal.cleanData(0.0002, 1.33959370123042E-05);
-                IEnumerable<IEnumerable<Articulo>> combinaciones = principal.GetPowerSet(principal.articulos);
+                mainBF.cleanData(0.0002, 1.33959370123042E-05);
+                IEnumerable<IEnumerable<Item>> combinaciones = mainBF.GetPowerSet(mainBF.getContext().listItems);
                 /*Console.Write("ITEMSETS RESULTANTES");
                 combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
                 {
@@ -78,7 +78,7 @@ namespace Allers
                     i.ToList().ForEach(j => Console.Write(j.itemName + ","));
                     Console.WriteLine("}");
                 });*/
-                List<transWithSupp> listaFinal = principal.frequentItemSet(combinaciones, 0.1);
+                List<transWithSupp> listaFinal = mainBF.frequentItemSet(combinaciones, 0.1);
                 //Console.Write("ITEMSETS FRECUENTES: " + listaFinal.Count() + "\n");
                 /* listaFinal.OrderBy(x => x.getItemSet().Count()).ToList().ForEach(i =>
                  {
@@ -86,7 +86,7 @@ namespace Allers
                      i.getItemSet().ToList().ForEach(j => Console.Write(j.itemName + ","));
                      Console.WriteLine("}");
                  });*/
-                principal.generateRules(listaFinal);
+                mainBF.generateRules(listaFinal);
                 /* Console.WriteLine("REGLAS GENERADAS");
                  principal.rules.ForEach(r =>
                  {
@@ -101,7 +101,7 @@ namespace Allers
                      Console.Write("\n");
 
                  });*/
-                principal.checkRules(0.5);
+                mainBF.checkRules(0.5);
                 /*  Console.WriteLine("REGLAS QUE SUPERAN EL UMBRAL");
                   principal.rules.ForEach(r =>
                   {

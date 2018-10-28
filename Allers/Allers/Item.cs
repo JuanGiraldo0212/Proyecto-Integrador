@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Allers
 {
-	public class Articulo
+	public class Item
 	{
 
 		public int itemCode { get; set; }
 		public string itemName { get; set; }
 
-		public Articulo() {
+		public Item() {
 			
 
 		}

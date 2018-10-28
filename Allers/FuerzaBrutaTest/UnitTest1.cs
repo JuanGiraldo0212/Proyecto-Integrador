@@ -13,57 +13,57 @@ namespace FuerzaBrutaTest
         [TestMethod]
         public void TestCargaCantidadElementos()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            bruta.cargarDatos();
+            BruteForce bruta = new BruteForce();
+            bruta.loadData();
             int resultadoCantidadArticulos = 18;
             int resultadoCantidadVentas = 149299;
 
             //Assert
-            Assert.AreEqual(bruta.darArticulos().Count(), resultadoCantidadArticulos);
-            Assert.AreEqual(bruta.darVentas().Count(), resultadoCantidadVentas);
+            Assert.AreEqual(bruta.getItems().Count(), resultadoCantidadArticulos);
+            Assert.AreEqual(bruta.getSales().Count(), resultadoCantidadVentas);
         }
         [TestMethod]
         public void TestCargaElementoAt()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            bruta.cargarDatos();
+            BruteForce bruta = new BruteForce();
+            bruta.loadData();
 
             String resultadoArticulo = "TAPON EMERGENCIA CAUCHO 1010 ALL AMERICA";
             String resultadoVenta = "66";
 
-            Assert.AreEqual(bruta.darArticulos().ElementAt(10).itemName, resultadoArticulo);
-            Assert.AreEqual(bruta.darVentas().ElementAt(17).itemCode, resultadoVenta);
+            Assert.AreEqual(bruta.getItems().ElementAt(10).itemName, resultadoArticulo);
+            Assert.AreEqual(bruta.getSales().ElementAt(17).itemCode, resultadoVenta);
 
         }
         [TestMethod]
         public void TestCombination()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            Articulo articulo1 = new Articulo();
+            BruteForce bruta = new BruteForce();
+            Item articulo1 = new Item();
             articulo1.itemCode = 1;
             articulo1.itemName = "A";
 
-            Articulo articulo2 = new Articulo();
+            Item articulo2 = new Item();
             articulo2.itemCode = 2;
             articulo2.itemName = "B";
 
-            Articulo articulo3 = new Articulo();
+            Item articulo3 = new Item();
             articulo3.itemCode = 3;
             articulo3.itemName = "C";
 
-            Articulo articulo4 = new Articulo();
+            Item articulo4 = new Item();
             articulo4.itemCode = 4;
             articulo4.itemName = "D";
 
-            Articulo articulo5 = new Articulo();
+            Item articulo5 = new Item();
             articulo5.itemCode = 5;
             articulo5.itemName = "E";
 
-            Articulo articulo6 = new Articulo();
+            Item articulo6 = new Item();
             articulo6.itemCode = 6;
             articulo6.itemName = "F";
 
-            List<Articulo> articulosPrueba = new List<Articulo>();
+            List<Item> articulosPrueba = new List<Item>();
 
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
@@ -80,40 +80,40 @@ namespace FuerzaBrutaTest
         [TestMethod]
         public void TestCombinationElementAt()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            Articulo articulo1 = new Articulo();
+            BruteForce bruta = new BruteForce();
+            Item articulo1 = new Item();
             articulo1.itemCode = 1;
             articulo1.itemName = "A";
 
-            Articulo articulo2 = new Articulo();
+            Item articulo2 = new Item();
             articulo2.itemCode = 2;
             articulo2.itemName = "B";
 
-            Articulo articulo3 = new Articulo();
+            Item articulo3 = new Item();
             articulo3.itemCode = 3;
             articulo3.itemName = "C";
 
-            Articulo articulo4 = new Articulo();
+            Item articulo4 = new Item();
             articulo4.itemCode = 4;
             articulo4.itemName = "D";
             
-            Articulo articulo5 = new Articulo();
+            Item articulo5 = new Item();
             articulo5.itemCode = 5;
             articulo5.itemName = "E";
 
-            Articulo articulo6 = new Articulo();
+            Item articulo6 = new Item();
             articulo6.itemCode = 6;
             articulo6.itemName = "F";
 
-            Articulo articulo7 = new Articulo();
+            Item articulo7 = new Item();
             articulo7.itemCode = 7;
             articulo7.itemName = "G";
 
-            Articulo articulo8 = new Articulo();
+            Item articulo8 = new Item();
             articulo8.itemCode = 8;
             articulo8.itemName = "H";
 
-            List<Articulo> articulosPrueba = new List<Articulo>();
+            List<Item> articulosPrueba = new List<Item>();
 
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
@@ -139,31 +139,31 @@ namespace FuerzaBrutaTest
         [TestMethod]
         public void TestConjuntoPotencia()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            Articulo articulo1 = new Articulo();
+            BruteForce bruta = new BruteForce();
+            Item articulo1 = new Item();
             articulo1.itemCode = 1;
             articulo1.itemName = "A";
 
-            Articulo articulo2 = new Articulo();
+            Item articulo2 = new Item();
             articulo2.itemCode = 2;
             articulo2.itemName = "B";
 
-            Articulo articulo3 = new Articulo();
+            Item articulo3 = new Item();
             articulo3.itemCode = 3;
             articulo3.itemName = "C";
 
-            Articulo articulo4 = new Articulo();
+            Item articulo4 = new Item();
             articulo4.itemCode = 4;
             articulo4.itemName = "D";
 
-            List<Articulo> articulosPrueba = new List<Articulo>();
+            List<Item> articulosPrueba = new List<Item>();
 
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
             articulosPrueba.Add(articulo3);
             articulosPrueba.Add(articulo4);
 
-            var misArt = bruta.ConjuntoPotencia(articulosPrueba);
+            var misArt = bruta.SetPow(articulosPrueba);
 
             Assert.AreEqual(misArt.ElementAt(0).Count(), 0);
 
@@ -183,44 +183,44 @@ namespace FuerzaBrutaTest
         [TestMethod]
         public void TestConjuntoPotenciaLarga()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            Articulo articulo1 = new Articulo();
+            BruteForce bruta = new BruteForce();
+            Item articulo1 = new Item();
             articulo1.itemCode = 1;
             articulo1.itemName = "A";
 
-            Articulo articulo2 = new Articulo();
+            Item articulo2 = new Item();
             articulo2.itemCode = 2;
             articulo2.itemName = "B";
 
-            Articulo articulo3 = new Articulo();
+            Item articulo3 = new Item();
             articulo3.itemCode = 3;
             articulo3.itemName = "C";
 
-            Articulo articulo4 = new Articulo();
+            Item articulo4 = new Item();
             articulo4.itemCode = 4;
             articulo4.itemName = "D";
 
-            Articulo articulo5 = new Articulo();
+            Item articulo5 = new Item();
             articulo5.itemCode = 5;
             articulo5.itemName = "E";
 
-            Articulo articulo6 = new Articulo();
+            Item articulo6 = new Item();
             articulo6.itemCode = 6;
             articulo6.itemName = "F";
 
-            Articulo articulo7 = new Articulo();
+            Item articulo7 = new Item();
             articulo7.itemCode = 7;
             articulo7.itemName = "G";
 
-            Articulo articulo8 = new Articulo();
+            Item articulo8 = new Item();
             articulo8.itemCode = 8;
             articulo8.itemName = "H";
 
-            Articulo articulo9 = new Articulo();
+            Item articulo9 = new Item();
             articulo9.itemCode = 9;
             articulo9.itemName = "I";
 
-            List<Articulo> articulosPrueba = new List<Articulo>();
+            List<Item> articulosPrueba = new List<Item>();
 
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
@@ -232,7 +232,7 @@ namespace FuerzaBrutaTest
             articulosPrueba.Add(articulo8);
             articulosPrueba.Add(articulo9);
 
-            var misArt = bruta.ConjuntoPotencia(articulosPrueba);
+            var misArt = bruta.SetPow(articulosPrueba);
 
             Assert.AreEqual(misArt.ElementAt(511).ElementAt(0).itemName, "A");
             Assert.AreEqual(misArt.ElementAt(511).ElementAt(1).itemName, "I");
@@ -248,24 +248,24 @@ namespace FuerzaBrutaTest
         [TestMethod]
         public void TestFrequentItemSet()
         {
-            FuercitaBruta bruta = new FuercitaBruta();
-            Articulo articulo1 = new Articulo();
+            BruteForce bruta = new BruteForce();
+            Item articulo1 = new Item();
             articulo1.itemCode = 1;
             articulo1.itemName = "A";
 
-            Articulo articulo2 = new Articulo();
+            Item articulo2 = new Item();
             articulo2.itemCode = 2;
             articulo2.itemName = "B";
 
-            Articulo articulo3 = new Articulo();
+            Item articulo3 = new Item();
             articulo3.itemCode = 3;
             articulo3.itemName = "C";
 
-            Articulo articulo4 = new Articulo();
+            Item articulo4 = new Item();
             articulo4.itemCode = 4;
             articulo4.itemName = "D";
 
-            List<Articulo> articulosPrueba = new List<Articulo>();
+            List<Item> articulosPrueba = new List<Item>();
 
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
@@ -273,34 +273,34 @@ namespace FuerzaBrutaTest
             articulosPrueba.Add(articulo4);
 
 
-            IEnumerable<IEnumerable<Articulo>> combinaciones = new List<List<Articulo>>();
+            IEnumerable<IEnumerable<Item>> combinaciones = new List<List<Item>>();
             for (int i = 1; i <=4; i++)
             {
                 combinaciones = combinaciones.Union(bruta.Combinations(articulosPrueba, i));
             }
             //var misArt = bruta.Combinations(articulosPrueba, 2);
 
-            List<List<Articulo>> transacciones = new List<List<Articulo>>();
+            List<List<Item>> transacciones = new List<List<Item>>();
 
-            List<Articulo> lista1 = new List<Articulo>();
+            List<Item> lista1 = new List<Item>();
             articulosPrueba.Add(articulo3);
             articulosPrueba.Add(articulo4);
-            List<Articulo> lista2 = new List<Articulo>();
+            List<Item> lista2 = new List<Item>();
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo4);
-            List<Articulo> lista3 = new List<Articulo>();
+            List<Item> lista3 = new List<Item>();
             articulosPrueba.Add(articulo2);
             articulosPrueba.Add(articulo3);
-            List<Articulo> lista4 = new List<Articulo>();
+            List<Item> lista4 = new List<Item>();
             articulosPrueba.Add(articulo3);
             articulosPrueba.Add(articulo4);
-            List<Articulo> lista5 = new List<Articulo>();
+            List<Item> lista5 = new List<Item>();
             articulosPrueba.Add(articulo3);
             articulosPrueba.Add(articulo4);
-            List<Articulo> lista6 = new List<Articulo>();
+            List<Item> lista6 = new List<Item>();
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo2);
-            List<Articulo> lista7 = new List<Articulo>();
+            List<Item> lista7 = new List<Item>();
             articulosPrueba.Add(articulo1);
             articulosPrueba.Add(articulo4);
 

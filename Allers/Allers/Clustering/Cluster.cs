@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
     class Cluster
     {
-        public List<Cliente> elementos { get; set; }
+        public List<Client> itemsCluster { get; set; }
         public double[] centroid { get; set; }
 
-        public Cluster(double[] centroid, Cliente clienteCentroide)
+        public Cluster(double[] centroid, Client clienteCentroide)
         {
             this.centroid = centroid;
-		    elementos = new List<Cliente>();
-            elementos.Add(clienteCentroide);
+		    itemsCluster = new List<Client>();
+            itemsCluster.Add(clienteCentroide);
         } 
 
     }

@@ -69,3 +69,16 @@ C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelInicio.resources
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
 C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe.config
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.exe
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\bin\Debug\Allers.pdb
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csprojAssemblyReference.cache
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelClientes.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelInicio.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.Properties.Resources.resources
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.GenerateResource.cache
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
+C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
