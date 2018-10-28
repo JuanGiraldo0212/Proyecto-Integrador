@@ -4,6 +4,7 @@ using static Allers.FuercitaBruta;
 using System.Diagnostics;
 using System.Threading;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Allers
 {
@@ -17,7 +18,7 @@ namespace Allers
         {
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            //Application.Run(new PanelInicio());
             //escoger nucleo del pc
             //Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
             //dar prioridad alta al nucleo

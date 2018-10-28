@@ -39,9 +39,9 @@ namespace Allers
         public void cargarDatos()
         {
 
-            var datosClientes = File.ReadLines("...\\...\\Clientes.csv");
-            var datosArticulos = File.ReadLines("...\\...\\Articulos.csv");
-            var datosVentas = File.ReadLines("...\\...\\Ventas.csv");
+            var datosClientes = File.ReadLines("...\\...\\Clientes2.csv");
+            var datosArticulos = File.ReadLines("...\\...\\Articulos2.csv");
+            var datosVentas = File.ReadLines("...\\...\\Ventas2.csv");
 
             foreach (var s in datosVentas)
             {
@@ -118,7 +118,7 @@ namespace Allers
                     {
                         try
                         {
-                            clientes.First(k => k.CardCode.Equals(venta.cardCode)).items[i] = 1;
+                            clientes.First(k => k.CardCode.Equals(venta.cardCode)).items[i] += 1;
                             Console.WriteLine("holi");
                         }
                         catch { }

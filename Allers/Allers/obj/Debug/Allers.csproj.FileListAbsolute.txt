@@ -65,3 +65,7 @@ C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.P
 C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
 C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources
 C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelClientes.resources
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelClientes.resources
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelInicio.resources
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources
