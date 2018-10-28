@@ -114,9 +114,6 @@ namespace Allers
             {
                 foreach(Venta venta in ventas)
                 {
-                    
-                    Console.WriteLine(venta.itemCode);
-                    Console.WriteLine(articulos[i].itemCode);
                     if (venta.itemCode.Equals(articulos[i].itemCode+""))
                     {
                         try
