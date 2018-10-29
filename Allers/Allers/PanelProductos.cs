@@ -27,8 +27,17 @@ namespace Allers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String line = contexto.runApriori(Convert.ToInt32(textBox1.Text),Convert.ToInt32(textBox2.Text));
-            richTextBox1.Text=line;
+            if (comboBox1.SelectedItem.Equals("A-Priori"))
+            {
+                String line = contexto.runApriori(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
+                richTextBox1.Text = line;
+            }
+            else if(comboBox1.SelectedItem.Equals("Fuerza Bruta"))
+            {
+                MessageBox.Show("Dada la gran cantidad de datos no es posible realizar un análisis por fuerza bruta",
+                "Important Message");
+            }
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
