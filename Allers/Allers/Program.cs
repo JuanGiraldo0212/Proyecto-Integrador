@@ -32,9 +32,10 @@ namespace Allers
         public static void ClusteringAnalysis(int clustersNumber)
         {
             
-            BruteForce main = new BruteForce();
+            Context main = new Context();
             //main.loadData();
-            Clustering clustering = new Clustering(main.getContext().listClients, clustersNumber, main.getContext().listItems.Count());
+           
+            Clustering clustering = new Clustering(main.listClients, clustersNumber, main.listItems.Count());
             Cluster[] clusters = clustering.clusters;
             Console.WriteLine("CLUSTERS:");
             for (int i = 0; i < clusters.Length; i++)
@@ -49,14 +50,14 @@ namespace Allers
                 Console.WriteLine("CENTROIDE:");
                 for(int j = 0; j < clusters[i].centroid.Count(); j++)
                 {
-                    if(clusters[i].centroid[j] == 1)
+                    if(clusters[i].centroid[j] != 0)
                     {
-                        Console.WriteLine(main.getContext().listItems.ElementAt(j).itemName);
+                        Console.WriteLine(main.listItems.ElementAt(j).itemName);
                     }
                 }
             }
             Console.WriteLine("CLIENTES EXISTENTES:");
-            Console.WriteLine(main.getContext().listClients.Count());
+            Console.WriteLine(main.listClients.Count());
             Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
             Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
         }

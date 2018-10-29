@@ -393,7 +393,7 @@ namespace Allers
 
         }
 
-        public void cleanData(double topTH, double botTH)
+        public void cleanData(double topTH, double botTH, int botTHSales)
         {
 
             List<Item> cleanList = new List<Item>();
@@ -401,7 +401,7 @@ namespace Allers
             Hashtable set = new Hashtable();
             for (int i = 0; i < context.listSales.Count(); i++)
             {
-                if (!set.ContainsKey(context.listSales[i].itemCode))
+                if (!set.ContainsKey(context.listSales[i].itemCode) && context.listSales[i].amount > botTHSales)
                 {
                     set.Add(context.listSales[i].itemCode, 1);
                 }
