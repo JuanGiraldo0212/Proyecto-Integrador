@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 		public Clustering(int numberOfClusters, int botTHSales)
 		{
          main = new Context();
-        main.loadData(botTHSales);
+        main.loadDataClustering(botTHSales);
         Console.WriteLine(main.listItems.Count());
         Console.WriteLine(main.listSales.Count());
         clients = main.listClients;

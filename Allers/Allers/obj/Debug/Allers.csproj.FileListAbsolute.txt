@@ -82,3 +82,7 @@ C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\D
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.csproj.CoreCompileInputs.cache
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.exe
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.pdb
+E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelClientes.resources
+E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelInicio.resources
+E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
+E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources

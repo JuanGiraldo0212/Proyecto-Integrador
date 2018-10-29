@@ -15,32 +15,7 @@ namespace Allers
         public List<Client> listClients = new List<Client>();
         public List<List<Item>> listTransactions = new List<List<Item>>();
 
-        public List<Item> getItems()
-        {
-            return listItems;
-        }
-
-        public List<Sale> getSales()
-        {
-            return listSales;
-        }
-
-        public List<Client> getClients()
-        {
-            return listClients;
-        }
-
-        public List<List<Item>> getTransactions()
-        {
-            return listTransactions;
-        }
-
-        public void setTransactions(List<List<Item>> newTransactions)
-        {
-            listTransactions = newTransactions;
-        }
-
-        public void loadData(int botTHSales)
+        public void loadDataClustering(int botTHSales)
         {
             listClients.Clear();
             listItems.Clear();
@@ -75,7 +50,7 @@ namespace Allers
                 String[] datos = s.Split(';');
                 if (datos.Length > 1)
                 {
-                    if (datos[1] != "********" && datos[1] != "ItemName" && listSales.Any(m => m.itemCode.Equals(datos[0])))
+                    if (datos[1] != "****" && datos[1] != "ItemName" && listSales.Any(m => m.itemCode.Equals(datos[0])))
                     {
 
                         Item newItem = new Item();
@@ -92,6 +67,158 @@ namespace Allers
 
             }
 
+            foreach (var s in dataClients)
+            {
+                String[] datos = s.Split(';');
+                if (s.Equals(""))
+                {
+                    break;
+                }
+                if (!s.Equals("") && datos[2] != "NULL" && datos[3] != "NULL" && datos[1] != "GroupName")
+                {
+                    Client newClient = new Client();
+                    newClient.CardCode = datos[0].Trim();
+                    newClient.GroupName = datos[1].Trim();
+                    newClient.City = datos[2].Trim();
+                    newClient.Dpto = datos[3].Trim();
+                    newClient.PymntGruoup = datos[4].Trim();
+                    newClient.items = new double[listItems.Count()];
+                    listClients.Add(newClient);
+                }
+            }
+
+            //Console.WriteLine(articulos.Count());
+            //Console.WriteLine(ventas.Count());
+            for (int i = 0; i < listItems.Count(); i++)
+            {
+                foreach (Sale sale in listSales)
+                {
+                    if (sale.itemCode.Equals(listItems[i].itemCode + ""))
+                    {
+                        try
+                        {
+                            listClients.First(k => k.CardCode.Equals(sale.cardCode)).items[i] += 1;
+                            Console.WriteLine("holi");
+                        }
+                        catch { }
+                    }
+                }
+            }
+        }
+        public String runApriori(int supp, int trust)
+        {
+            String line = "";
+            List<List<string>> op = APriori.ItemsFrecuentes(transacciones, supp);
+           
+            List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transacciones, op, trust);
+
+            line = APriori.rules();
+            return line;
+        }
+
+        public String runClustering()
+        {
+            String line = "";
+            return line;
+        }
+
+        public List<List<string>> transacciones = new List<List<string>>();
+        public void cargarTransacciones()
+        {
+            List<List<string>> trans = new List<List<string>>();
+            var cons = listSales.GroupBy(x => x.docNum);
+            //cons.ToList().ForEach(x=>Console.WriteLine(x.Key));
+
+            foreach (var s in cons)
+            {
+                List<string> temp = new List<string>();
+                foreach (var r in s)
+                {
+                    try
+                    {
+                        temp.Add(r.itemCode);
+
+                    }
+                    catch (Exception e)
+                    {
+                        //Console.WriteLine(r.itemCode);
+                    }
+
+                }
+                //Console.WriteLine(s.Key);
+                //Console.WriteLine(temp.ToString());
+                trans.Add(temp);
+            }
+            transacciones = trans;
+
+        }
+        public List<Item> getItems()
+        {
+            return listItems;
+        }
+
+        public List<Sale> getSales()
+        {
+            return listSales;
+        }
+
+        public List<Client> getClients()
+        {
+            return listClients;
+        }
+
+        public List<List<Item>> getTransactions()
+        {
+            return listTransactions;
+        }
+
+        public void setTransactions(List<List<Item>> newTransactions)
+        {
+            listTransactions = newTransactions;
+        }
+
+        public void loadData(String selectedPathArt, String selectedPathClie, String selectedPathVent)
+        {
+           var dataClients = File.ReadLines(selectedPathArt);
+            var dataItems = File.ReadLines(selectedPathClie);
+            var dataSales = File.ReadLines(selectedPathVent);
+
+            foreach (var s in dataSales)
+            {
+                String[] data = s.Split(';');
+                if (!s.Equals("") && data[4] != "NULL" && data[4] != "ItemCode")
+                {
+                    Sale newSale = new Sale();
+                    newSale.cardCode = data[0];
+                    newSale.docNum = (data[1]);
+                    newSale.docDate = data[2];
+                    newSale.docTotal = Convert.ToDouble(data[3]);
+                    newSale.itemCode = data[4];
+                    newSale.amount = Convert.ToInt32(data[5]);
+                    newSale.price = Convert.ToDouble(data[6]);
+                    newSale.totalLine = Convert.ToDouble(data[7]);
+                    listSales.Add(newSale);
+
+                }
+            }
+            foreach (var s in dataItems)
+            {
+                String[] datos = s.Split(';');
+                if (datos.Length > 1)
+                {
+                    if (datos[1] != "********" && datos[1] != "ItemName")
+                    {
+                        Item newItem = new Item();
+                        newItem.itemCode = Convert.ToInt32(datos[0]);
+                        newItem.itemName = datos[1];
+                        listItems.Add(newItem);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
             foreach (var s in dataClients)
             {
                 String[] datos = s.Split(';');
@@ -130,6 +257,7 @@ namespace Allers
                     }
                 }
             }
+            int h = 0;
         }
         public void cleanData(double topTH, double botTH, int botTHSales)
         {

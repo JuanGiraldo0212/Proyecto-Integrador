@@ -9,6 +9,7 @@ public class APriori
 {
     public static List<ReglaAsociacion> allRules;
 
+
     public static String PrintL(List<List<string>> op)
     {
         String imp = "";
@@ -23,7 +24,13 @@ public class APriori
         }
         return imp;
     }
-
+   
+    public static String rules()
+    {
+        String line = "";
+        allRules.ForEach(x => line += x.ToString() + "\n");
+        return line;
+    }
 
     public static List<List<string>> ItemSetsUnicos(List<List<string>> db)
     {
