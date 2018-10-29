@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Allers
 {
@@ -62,7 +63,7 @@ namespace Allers
                     newSale.price = Convert.ToDouble(data[6]);
                     newSale.totalLine = Convert.ToDouble(data[7]);
                     listSales.Add(newSale);
-                    
+
                 }
             }
 
@@ -128,8 +129,44 @@ namespace Allers
             }
             int h = 0;
         }
+        public void cleanData(double topTH, double botTH, int botTHSales)
+        {
 
-        public void loadTransactions()
+            List<Item> cleanList = new List<Item>();
+            double count = listSales.Count();
+            Hashtable set = new Hashtable();
+            for (int i = 0; i < listSales.Count(); i++)
+            {
+                if (!set.ContainsKey(listSales[i].itemCode) && listSales[i].amount > botTHSales)
+                {
+                    set.Add(listSales[i].itemCode, 1);
+                }
+                else
+                {
+                    set[listSales[i].itemCode] = Convert.ToInt32(set[listSales[i].itemCode]) + 1;
+                }
+            }
+            foreach (DictionaryEntry elemento in set)
+            {
+                Console.WriteLine(elemento.Value);
+                Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
+                if (((Convert.ToInt32(elemento.Value) / count) >= topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH))
+                {
+                    try
+                    {
+                        cleanList.Add(listItems.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(elemento.Key);
+                    }
+                }
+            }
+
+            Console.WriteLine(cleanList.Count());
+
+        }
+    public void loadTransactions()
         {
             List<List<Item>> trans = new List<List<Item>>();
             var cons = listSales.GroupBy(x => x.docNum);
