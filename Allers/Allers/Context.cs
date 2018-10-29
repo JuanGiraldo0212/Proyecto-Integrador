@@ -106,6 +106,26 @@ namespace Allers
                 }
             }
         }
+
+		public String convertRules(List<ReglaAsociacion> rules) {
+
+			String line = "";
+			foreach (var rule in rules) {
+
+				var ant = rule.X;
+				var con = rule.Y;
+				line += "{";
+				ant.ForEach(x=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(x)).itemName+",");
+				line += "} ---> {";
+				con.ForEach(y=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(y)).itemName+",");
+				line += "}"+"Confianza: "+rule.Confidence+"\n";
+				
+			}
+
+			return line;
+
+
+		}
         public String runApriori(int supp, int trust)
         {
             String line = "";
@@ -117,7 +137,8 @@ namespace Allers
                 Console.WriteLine("Calculando reglas");
                 List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transacciones, op, trust);
 
-                line = APriori.rules(reglas);
+                line = convertRules(reglas);
+
                 Console.WriteLine(line);
             
            

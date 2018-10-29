@@ -13,6 +13,7 @@
 		public double totalLine { get; set; }
 		
 
+
 		public Sale()
 		{
 			
