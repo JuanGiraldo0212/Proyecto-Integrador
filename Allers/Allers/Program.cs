@@ -20,24 +20,21 @@ namespace Allers
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new PanelInicio());
             //escoger nucleo del pc
-            //Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
+            Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
             //dar prioridad alta al nucleo
 
-            //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            //Thread.CurrentThread.Priority = ThreadPriority.Highest;
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            ClusteringAnalysis(4);
+            ClusteringAnalysis(4,1000);
             
         }
-        public static void ClusteringAnalysis(int clustersNumber)
+        public static void ClusteringAnalysis(int clustersNumber, int botTHSales)
         {
             
-            Context main = new Context();
-            main.loadData();
-            main.cleanData(0, 0, 100);
-            Console.WriteLine(main.listSales.Count());
-           
-            Clustering clustering = new Clustering(main.listClients, clustersNumber, main.listItems.Count());
+            
+            //main.cleanData(0, 0, 100);           
+            Clustering clustering = new Clustering(clustersNumber, botTHSales);
             Cluster[] clusters = clustering.clusters;
             Console.WriteLine("CLUSTERS:");
             for (int i = 0; i < clusters.Length; i++)
@@ -54,19 +51,19 @@ namespace Allers
                 {
                     if(clusters[i].centroid[j] != 0)
                     {
-                        Console.WriteLine(main.listItems.ElementAt(j).itemName);
+                        Console.WriteLine(clustering.main.listItems.ElementAt(j).itemName);
                     }
                 }
             }
             Console.WriteLine("CLIENTES EXISTENTES:");
-            Console.WriteLine(main.listClients.Count());
+            Console.WriteLine(clustering.main.listClients.Count());
             Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
             Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
         }
         public static void bruteForceAnalysis()
         {
             BruteForce mainBF = new BruteForce();
-            mainBF.getContext().loadData();
+            //mainBF.getContext().loadData();
             int i = 0;
             while (i < 20)
             {

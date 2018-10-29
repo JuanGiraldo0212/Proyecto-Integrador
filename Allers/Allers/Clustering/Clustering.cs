@@ -12,9 +12,12 @@ using System.Threading.Tasks;
 
         public List<Client> clients = new List<Client>();
         public Cluster[] clusters;
-		public Clustering(List<Client> clientss, int numberOfClusters, int numberOfProducts)
+    public Context main { get; set; }
+		public Clustering(int numberOfClusters, int botTHSales)
 		{
-		    clients = clientss;
+         main = new Context();
+        main.loadData(botTHSales);
+        clients = main.listClients;
             clusters = new Cluster[numberOfClusters];
             for (int i = 0; i < numberOfClusters; i++)
             {

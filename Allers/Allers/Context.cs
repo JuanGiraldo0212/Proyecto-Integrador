@@ -40,9 +40,12 @@ namespace Allers
             listTransactions = newTransactions;
         }
 
-        public void loadData()
+        public void loadData(int botTHSales)
         {
-
+            listClients.Clear();
+            listItems.Clear();
+            listSales.Clear();
+            listTransactions.Clear();
             var dataClients = File.ReadLines("...\\...\\Clientes.csv");
             var dataItems = File.ReadLines("...\\...\\Articulos.csv");
             var dataSales = File.ReadLines("...\\...\\Ventas.csv");
@@ -50,7 +53,7 @@ namespace Allers
             foreach (var s in dataSales)
             {
                 String[] data = s.Split(';');
-                if (!s.Equals("") && data[4] != "NULL" && data[4] != "ItemCode")
+                if (!s.Equals("") && data[4] != "NULL" && data[4] != "ItemCode" && Convert.ToInt32(data[5]) > botTHSales)
                 {
 
                     Sale newSale = new Sale();
