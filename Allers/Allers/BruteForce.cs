@@ -51,7 +51,7 @@ namespace Allers
 
             context.loadData();
         }
-        
+
         public void preCombinations()
         {
             Item item1 = new Item();
@@ -164,7 +164,14 @@ namespace Allers
             });
 
         }
-
+        public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
+        {
+            return from m in Enumerable.Range(0, 1 << list.Count)
+                   select
+                       from i in Enumerable.Range(0, list.Count)
+                       where (m & (1 << i)) != 0
+                       select list[i];
+        }
         public void makeCombinaciones()
         {
             Combinations(context.listItems, 9).AsParallel().ToList().ForEach(i =>
@@ -392,53 +399,6 @@ namespace Allers
             return exit;
 
         }
-
-        public void cleanData(double topTH, double botTH, int botTHSales)
-        {
-
-            List<Item> cleanList = new List<Item>();
-            double count = context.listSales.Count();
-            Hashtable set = new Hashtable();
-            for (int i = 0; i < context.listSales.Count(); i++)
-            {
-                if (!set.ContainsKey(context.listSales[i].itemCode) && context.listSales[i].amount > botTHSales)
-                {
-                    set.Add(context.listSales[i].itemCode, 1);
-                }
-                else
-                {
-                    set[context.listSales[i].itemCode] = Convert.ToInt32(set[context.listSales[i].itemCode]) + 1;
-                }
-            }
-            foreach (DictionaryEntry elemento in set)
-            {
-                Console.WriteLine(elemento.Value);
-                Console.WriteLine(Convert.ToInt32(elemento.Value) / count);
-                if (((Convert.ToInt32(elemento.Value) / count) >= topTH) || ((Convert.ToInt32(elemento.Value) / count) <= botTH))
-                {
-                    try
-                    {
-                        cleanList.Add(context.listItems.First(a => a.itemCode == Convert.ToInt32(elemento.Key)));
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(elemento.Key);
-                    }
-                }
-            }
-
-            Console.WriteLine(cleanList.Count());
-
-        }
-        public IEnumerable<IEnumerable<T>> GetPowerSet<T>(List<T> list)
-        {
-            return from m in Enumerable.Range(0, 1 << list.Count)
-                   select
-                       from i in Enumerable.Range(0, list.Count)
-                       where (m & (1 << i)) != 0
-                       select list[i];
-        }
-
 
 
     }
