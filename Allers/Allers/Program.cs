@@ -26,7 +26,7 @@ namespace Allers
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            ClusteringAnalysis(4,1000);
+            ClusteringAnalysis(4,0);
             
         }
         public static void ClusteringAnalysis(int clustersNumber, int botTHSales)

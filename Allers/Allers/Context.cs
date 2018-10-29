@@ -75,7 +75,7 @@ namespace Allers
                 String[] datos = s.Split(';');
                 if (datos.Length > 1)
                 {
-                    if (datos[1] != "********" && datos[1] != "ItemName")
+                    if (datos[1] != "********" && datos[1] != "ItemName" && listSales.Any(m => m.itemCode.Equals(datos[0])))
                     {
 
                         Item newItem = new Item();
