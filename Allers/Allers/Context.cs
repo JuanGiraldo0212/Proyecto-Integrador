@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Threading;
 
 namespace Allers
 {
@@ -108,11 +109,18 @@ namespace Allers
         public String runApriori(int supp, int trust)
         {
             String line = "";
-            List<List<string>> op = APriori.ItemsFrecuentes(transacciones, supp);
-           
-            List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transacciones, op, trust);
+            
+                Console.WriteLine("Calculando");
+                cargarTransacciones();
+                List<List<string>> op = APriori.ItemsFrecuentes(transacciones, supp);
 
-            line = APriori.rules();
+                Console.WriteLine("Calculando reglas");
+                List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transacciones, op, trust);
+
+                line = APriori.rules(reglas);
+                Console.WriteLine(line);
+            
+           
             return line;
         }
 
@@ -199,8 +207,9 @@ namespace Allers
 
         public void loadData(String selectedPathArt, String selectedPathClie, String selectedPathVent)
         {
-           var dataClients = File.ReadLines(selectedPathArt);
-            var dataItems = File.ReadLines(selectedPathClie);
+            Console.WriteLine(selectedPathArt+","+ selectedPathClie + ","+ selectedPathVent);
+           var dataClients = File.ReadLines(selectedPathClie);
+            var dataItems = File.ReadLines(selectedPathArt);
             var dataSales = File.ReadLines(selectedPathVent);
 
             foreach (var s in dataSales)

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,12 +26,26 @@ namespace Allers
 
         }
 
+        public RichTextBox getRichbox()
+        {
+            return richTextBox1;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem.Equals("A-Priori"))
             {
-                String line = contexto.runApriori(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
-                richTextBox1.Text = line;
+                var t = new Thread((ThreadStart)(() => {
+                   String line =contexto.runApriori(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        richTextBox1.Text = line;
+                    });
+
+                }));
+
+                t.Start();
+               
             }
             else if(comboBox1.SelectedItem.Equals("Fuerza Bruta"))
             {
@@ -39,6 +54,7 @@ namespace Allers
             }
             
         }
+        
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

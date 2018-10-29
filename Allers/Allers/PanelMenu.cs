@@ -90,14 +90,13 @@ namespace Allers
                     selectedPathVent = openFileDialog3.FileName;
                 }
                 contexto.loadData(selectedPathArt, selectedPathClie, selectedPathVent);
-
+                
             }));
-
+            
 
 
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
-            t.Join();
         }
     }
 }

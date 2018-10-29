@@ -25,10 +25,10 @@ public class APriori
         return imp;
     }
    
-    public static String rules()
+    public static String rules(List<ReglaAsociacion> rules)
     {
         String line = "";
-        allRules.ForEach(x => line += x.ToString() + "\n");
+        rules.ForEach(x => line += x.ToString() + "\n");
         return line;
     }
 
