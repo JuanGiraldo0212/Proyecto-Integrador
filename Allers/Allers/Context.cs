@@ -116,9 +116,29 @@ namespace Allers
             return line;
         }
 
-        public String runClustering(int clusters)
+        public String runClustering(int clustersNumber, int botTHSales)
         {
-            String line = "";
+            String line = "INFORME CLUSTERIZACIÓN POR K-MEANS\n\n";
+            loadDataClustering(botTHSales);
+            Clustering clustering = new Clustering(listClients,clustersNumber);
+            Cluster[] clusters = clustering.clusters;
+            for (int i = 0; i < clusters.Length; i++)
+            {
+                line += "CLUSTER " + i + ":\n#Elementos: " + clusters[i].itemsCluster.Count() + "\nClientes Pertenecientes:\n";
+                foreach (Client actual in clusters[i].itemsCluster)
+                {
+                    line += actual.CardCode + "\n";
+                }
+                line += "Compras Representativas del Cluster (Centroide):\n";
+                for (int j = 0; j < clusters[i].centroid.Count(); j++)
+                {
+                    if (clusters[i].centroid[j] != 0)
+                    {
+                        line += listItems.ElementAt(j).itemName + "\n";
+                    }
+                }
+                line += "\n";
+            }
             return line;
         }
 

@@ -29,37 +29,37 @@ namespace Allers
            // ClusteringAnalysis(4,0);
             
         }
-        public static void ClusteringAnalysis(int clustersNumber, int botTHSales)
-        {
+        //public static void ClusteringAnalysis(int clustersNumber, int botTHSales)
+        //{
             
             
-            //main.cleanData(0, 0, 100);           
-            Clustering clustering = new Clustering(clustersNumber, botTHSales);
-            Cluster[] clusters = clustering.clusters;
-            Console.WriteLine("CLUSTERS:");
-            for (int i = 0; i < clusters.Length; i++)
-            {
-                Console.Write("{");
-                foreach(Client actual in clusters[i].itemsCluster)
-                {
-                    Console.Write(actual.CardCode + ",");
-                }
-                Console.WriteLine("}");
-                Console.WriteLine("Elementos: " + clusters[i].itemsCluster.Count());
-                Console.WriteLine("CENTROIDE:");
-                for(int j = 0; j < clusters[i].centroid.Count(); j++)
-                {
-                    if(clusters[i].centroid[j] != 0)
-                    {
-                        Console.WriteLine(clustering.main.listItems.ElementAt(j).itemName);
-                    }
-                }
-            }
-            Console.WriteLine("CLIENTES EXISTENTES:");
-            Console.WriteLine(clustering.main.listClients.Count());
-            Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
-            Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
-        }
+        //    //main.cleanData(0, 0, 100);           
+        //    Clustering clustering = new Clustering(clustersNumber, botTHSales);
+        //    Cluster[] clusters = clustering.clusters;
+        //    Console.WriteLine("CLUSTERS:");
+        //    for (int i = 0; i < clusters.Length; i++)
+        //    {
+        //        Console.Write("{");
+        //        foreach(Client actual in clusters[i].itemsCluster)
+        //        {
+        //            Console.Write(actual.CardCode + ",");
+        //        }
+        //        Console.WriteLine("}");
+        //        Console.WriteLine("Elementos: " + clusters[i].itemsCluster.Count());
+        //        Console.WriteLine("CENTROIDE:");
+        //        for(int j = 0; j < clusters[i].centroid.Count(); j++)
+        //        {
+        //            if(clusters[i].centroid[j] != 0)
+        //            {
+        //                Console.WriteLine(clustering.main.listItems.ElementAt(j).itemName);
+        //            }
+        //        }
+        //    }
+        //    Console.WriteLine("CLIENTES EXISTENTES:");
+        //    Console.WriteLine(clustering.main.listClients.Count());
+        //    Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
+        //    Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
+        //}
         public static void bruteForceAnalysis()
         {
             BruteForce mainBF = new BruteForce();

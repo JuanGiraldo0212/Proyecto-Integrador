@@ -21,7 +21,7 @@ namespace Allers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String line = contexto.runClustering(Convert.ToInt32(textBox1.Text));
+            String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
             richTextBox1.Text = line;
         }
 
@@ -31,6 +31,21 @@ namespace Allers
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PanelClientes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
