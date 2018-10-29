@@ -19,6 +19,7 @@ using System.Threading.Tasks;
             for (int i = 0; i < numberOfClusters; i++)
             {
                 Random r = new Random();
+            Console.Write(clients.Count() - 1);
                 Client centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
                 clusters[i] = new Cluster(centroid.items, centroid);
             }

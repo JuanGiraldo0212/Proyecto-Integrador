@@ -43,9 +43,9 @@ namespace Allers
         public void loadData()
         {
 
-            var dataClients = File.ReadLines("...\\...\\Clientes2.csv");
-            var dataItems = File.ReadLines("...\\...\\Articulos2.csv");
-            var dataSales = File.ReadLines("...\\...\\Ventas2.csv");
+            var dataClients = File.ReadLines("...\\...\\Clientes.csv");
+            var dataItems = File.ReadLines("...\\...\\Articulos.csv");
+            var dataSales = File.ReadLines("...\\...\\Ventas.csv");
 
             foreach (var s in dataSales)
             {
@@ -127,7 +127,6 @@ namespace Allers
                     }
                 }
             }
-            int h = 0;
         }
         public void cleanData(double topTH, double botTH, int botTHSales)
         {
@@ -166,6 +165,9 @@ namespace Allers
             Console.WriteLine(cleanList.Count());
 
         }
+
+
+
     public void loadTransactions()
         {
             List<List<Item>> trans = new List<List<Item>>();

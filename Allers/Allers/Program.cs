@@ -33,7 +33,9 @@ namespace Allers
         {
             
             Context main = new Context();
-            //main.loadData();
+            main.loadData();
+            main.cleanData(0, 0, 100);
+            Console.WriteLine(main.listSales.Count());
            
             Clustering clustering = new Clustering(main.listClients, clustersNumber, main.listItems.Count());
             Cluster[] clusters = clustering.clusters;
@@ -70,7 +72,7 @@ namespace Allers
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                mainBF.cleanData(0.0002, 1.33959370123042E-05);
+               // mainBF.cleanData(0.0002, 1.33959370123042E-05);
                 IEnumerable<IEnumerable<Item>> combinaciones = mainBF.GetPowerSet(mainBF.getContext().listItems);
                 /*Console.Write("ITEMSETS RESULTANTES");
                 combinaciones.OrderBy(x => x.Count()).ToList().ForEach(i =>
