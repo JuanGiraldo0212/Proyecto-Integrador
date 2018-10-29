@@ -116,7 +116,7 @@ namespace Allers
             return line;
         }
 
-        public String runClustering()
+        public String runClustering(int clusters)
         {
             String line = "";
             return line;

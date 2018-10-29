@@ -49,7 +49,7 @@ namespace Allers
             listRules = new List<Rules>();
             clientInfoHT = new Hashtable();
 
-            context.loadData(0);
+           // context.loadData(0);
         }
 
         public void preCombinations()

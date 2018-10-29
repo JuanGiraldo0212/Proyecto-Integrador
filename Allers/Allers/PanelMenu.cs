@@ -27,7 +27,7 @@ namespace Allers
 		private void button1_Click(object sender, EventArgs e)
 		{
 			
-				productos = new PanelProductos();
+				productos = new PanelProductos(contexto);
 				//this.Hide();
 				productos.Show();
 			
@@ -41,7 +41,7 @@ namespace Allers
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			clientes = new PanelClientes();
+			clientes = new PanelClientes(contexto);
 			clientes.Show();
 		}
 

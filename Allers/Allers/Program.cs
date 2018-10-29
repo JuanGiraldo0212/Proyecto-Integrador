@@ -16,17 +16,17 @@ namespace Allers
         [MTAThread]
         public static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new PanelInicio());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new PanelInicio());
             //escoger nucleo del pc
-            Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
+           // Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
             //dar prioridad alta al nucleo
 
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+            //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            //Thread.CurrentThread.Priority = ThreadPriority.Highest;
             //analisisFuerzaBruta();
-            ClusteringAnalysis(4,0);
+           // ClusteringAnalysis(4,0);
             
         }
         public static void ClusteringAnalysis(int clustersNumber, int botTHSales)
