@@ -48,55 +48,55 @@ namespace Allers
         private void button5_Click(object sender, EventArgs e)
         {
 
-            string selectedPathArt = "";
-            string selectedPathClie = "";
-            string selectedPathVent = "";
-            var t = new Thread((ThreadStart)(() => {
-                /*FolderBrowserDialog fbd = new FolderBrowserDialog();
-                fbd.RootFolder = System.Environment.SpecialFolder.MyComputer;
-                fbd.ShowNewFolderButton = true;
+          //  string selectedPathArt = "";
+          //  string selectedPathClie = "";
+          //  string selectedPathVent = "";
+          //  var t = new Thread((ThreadStart)(() => {
+          //      /*FolderBrowserDialog fbd = new FolderBrowserDialog();
+          //      fbd.RootFolder = System.Environment.SpecialFolder.MyComputer;
+          //      fbd.ShowNewFolderButton = true;
 
-                if (fbd.ShowDialog() == DialogResult.Cancel)
-                    return;
+          //      if (fbd.ShowDialog() == DialogResult.Cancel)
+          //          return;
 
-                selectedPathArt = fbd.SelectedPath;
-                */
-                MessageBox.Show("Escoga el archivo de articulos",
-            "Important Message");
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                DialogResult result = openFileDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    selectedPathArt = openFileDialog1.FileName;
-                }
+          //      selectedPathArt = fbd.SelectedPath;
+          //      */
+          //      MessageBox.Show("Escoga el archivo de articulos",
+          //  "Important Message");
+          //      OpenFileDialog openFileDialog1 = new OpenFileDialog();
+          //      DialogResult result = openFileDialog1.ShowDialog();
+          //      if (result == DialogResult.OK)
+          //      {
+          //          selectedPathArt = openFileDialog1.FileName;
+          //      }
 
 
-                MessageBox.Show("Escoga el archivo de Clientes",
-          "Important Message");
-                OpenFileDialog openFileDialog2 = new OpenFileDialog();
-                DialogResult result2 = openFileDialog2.ShowDialog();
-                if (result2 == DialogResult.OK)
-                {
-                    selectedPathClie = openFileDialog2.FileName;
-                }
+          //      MessageBox.Show("Escoga el archivo de Clientes",
+          //"Important Message");
+          //      OpenFileDialog openFileDialog2 = new OpenFileDialog();
+          //      DialogResult result2 = openFileDialog2.ShowDialog();
+          //      if (result2 == DialogResult.OK)
+          //      {
+          //          selectedPathClie = openFileDialog2.FileName;
+          //      }
 
-                MessageBox.Show("Escoga el archivo de Ventas",
-          "Important Message");
+          //      MessageBox.Show("Escoga el archivo de Ventas",
+          //"Important Message");
 
-                OpenFileDialog openFileDialog3 = new OpenFileDialog();
-                DialogResult result3 = openFileDialog3.ShowDialog();
-                if (result3 == DialogResult.OK)
-                {
-                    selectedPathVent = openFileDialog3.FileName;
-                }
-                contexto.loadData(selectedPathArt, selectedPathClie, selectedPathVent);
+          //      OpenFileDialog openFileDialog3 = new OpenFileDialog();
+          //      DialogResult result3 = openFileDialog3.ShowDialog();
+          //      if (result3 == DialogResult.OK)
+          //      {
+          //          selectedPathVent = openFileDialog3.FileName;
+          //      }
+          //      contexto.loadData(selectedPathArt, selectedPathClie, selectedPathVent);
                 
-            }));
+          //  }));
             
 
 
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
+          //  t.SetApartmentState(ApartmentState.STA);
+          //  t.Start();
         }
     }
 }

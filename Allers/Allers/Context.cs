@@ -129,7 +129,7 @@ namespace Allers
         public String runApriori(int supp, int trust)
         {
             String line = "";
-            
+            loadData();
                 Console.WriteLine("Calculando");
                 cargarTransacciones();
                 List<List<string>> op = APriori.ItemsFrecuentes(transacciones, supp);
@@ -226,12 +226,11 @@ namespace Allers
             listTransactions = newTransactions;
         }
 
-        public void loadData(String selectedPathArt, String selectedPathClie, String selectedPathVent)
+        public void loadData()
         {
-            Console.WriteLine(selectedPathArt+","+ selectedPathClie + ","+ selectedPathVent);
-           var dataClients = File.ReadLines(selectedPathClie);
-            var dataItems = File.ReadLines(selectedPathArt);
-            var dataSales = File.ReadLines(selectedPathVent);
+           var dataClients = File.ReadLines("...\\...\\Clientes.csv");
+            var dataItems = File.ReadLines("...\\...\\Articulos.csv");
+            var dataSales = File.ReadLines("...\\...\\Ventas.csv");
 
             foreach (var s in dataSales)
             {

@@ -33,6 +33,7 @@ namespace Allers
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             if (comboBox1.SelectedItem.Equals("A-Priori"))
             {
                 var t = new Thread((ThreadStart)(() => {
@@ -52,7 +53,7 @@ namespace Allers
                 MessageBox.Show("Dada la gran cantidad de datos no es posible realizar un análisis por fuerza bruta",
                 "Important Message");
             }
-            
+            button1.Enabled = false;
         }
         
 
@@ -67,6 +68,53 @@ namespace Allers
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if(Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show(this, "Introducir sólo números", "Aviso", MessageBoxButtons.OK);
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show(this, "Introducir sólo números", "Aviso", MessageBoxButtons.OK);
+            }
+        }
+
+        private void PanelProductos_Load(object sender, EventArgs e)
         {
 
         }
