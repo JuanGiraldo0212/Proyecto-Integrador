@@ -97,5 +97,16 @@ namespace Allers
                 MessageBox.Show(this, "Introducir sólo números", "Aviso", MessageBoxButtons.OK);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = Convert.ToInt32(textBox1.Text) + 1 + "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(Convert.ToInt32(textBox1.Text) != 2)
+            textBox1.Text = Convert.ToInt32(textBox1.Text) - 1 + "";
+        }
     }
 }

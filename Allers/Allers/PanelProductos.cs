@@ -118,5 +118,27 @@ namespace Allers
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = (Convert.ToDouble(textBox1.Text) + 0.1) + "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(textBox1.Text) != 0.0)
+                textBox1.Text = Convert.ToDouble(textBox1.Text) - 0.1 + "";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = Convert.ToDouble(textBox2.Text) + 0.1 + "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(textBox1.Text) != 0.0)
+                textBox2.Text = Convert.ToDouble(textBox2.Text) - 0.1 + "";
+        }
     }
 }
