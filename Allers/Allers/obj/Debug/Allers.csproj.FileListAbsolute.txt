@@ -87,3 +87,4 @@ E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelInici
 E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelMenu.resources
 E:\RepositoriosGit\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelProductos.resources
 C:\Users\juan-\Source\Repos\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelVentas.resources
+C:\Users\Juan Diego\Documents\GitHub\Proyecto-Integrador\Allers\Allers\obj\Debug\Allers.PanelVentas.resources

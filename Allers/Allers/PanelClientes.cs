@@ -23,14 +23,34 @@ namespace Allers
         private void button1_Click(object sender, EventArgs e)
         {
 			this.button1.Enabled = false;
-            if (comboBox1.SelectedItem.Equals("Clustering K-means"))
+            if(comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show(this, "Debe escoger un tipo de análisis", "Aviso", MessageBoxButtons.OK);
+
+            }
+            else if (comboBox1.SelectedItem.Equals("Clustering K-means"))
             {
                 var t = new Thread((ThreadStart)(() => {
-                    String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
+                    String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 0);
                    this.Invoke((MethodInvoker)delegate ()
                     {
 						this.button1.Enabled = true;
 						richTextBox1.Text = line;
+                    });
+
+                }));
+
+                t.Start();
+
+            }
+            else if (comboBox1.SelectedItem.Equals("Clustering Bisecting-K-means"))
+            {
+                var t = new Thread((ThreadStart)(() => {
+                    String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 1);
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        this.button1.Enabled = true;
+                        richTextBox1.Text = line;
                     });
 
                 }));

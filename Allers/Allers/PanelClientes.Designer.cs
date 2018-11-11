@@ -43,11 +43,12 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Clustering K-means"});
-            this.comboBox1.Location = new System.Drawing.Point(65, 229);
+            "Clustering K-means",
+            "Clustering Bisecting-K-means"});
+            this.comboBox1.Location = new System.Drawing.Point(28, 233);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 37);
+            this.comboBox1.Size = new System.Drawing.Size(356, 37);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 

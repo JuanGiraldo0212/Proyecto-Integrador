@@ -147,11 +147,11 @@ namespace Allers
             return line;
         }
 
-        public String runClustering(int clustersNumber, int botTHSales)
+        public String runClustering(int clustersNumber, int botTHSales, int clusteringMethod)
         {
             String line = "INFORME CLUSTERIZACIÓN POR K-MEANS\n\n";
             loadDataClustering(botTHSales);
-            Clustering clustering = new Clustering(listClients,clustersNumber);
+            Clustering clustering = new Clustering(listClients,clustersNumber, clusteringMethod);
             Cluster[] clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {

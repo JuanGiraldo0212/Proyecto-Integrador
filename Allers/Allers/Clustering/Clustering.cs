@@ -12,19 +12,58 @@ using System.Threading.Tasks;
 
         public List<Client> clients = new List<Client>();
         public Cluster[] clusters;
-		public Clustering(List<Client> clientsMain, int numberOfClusters)
-		{
-            clients = clientsMain;
-            clusters = new Cluster[numberOfClusters];
-            for (int i = 0; i < numberOfClusters; i++)
-            {
-                Random r = new Random();
-            Console.Write(clients.Count() - 1);
-                Client centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
-                clusters[i] = new Cluster(centroid.items, centroid);
-            }
-          findClusters();
+    public Clustering(List<Client> clientsMain, int numberOfClusters, int clusteringMethod)
+    {
+        clients = clientsMain;
+        if (clusteringMethod == 0)
+        {
+            do_K_means(numberOfClusters);
         }
+        if (clusteringMethod == 1)
+        {
+            do_Bisecting_K_means(numberOfClusters);
+        }
+    }
+    public void do_Bisecting_K_means(int numberOfClusters)
+    {
+        List<Cluster> tempClusters = new List<Cluster>();
+        if (numberOfClusters > 2)
+        {
+            while (tempClusters.Count() != numberOfClusters)
+            {
+
+                do_K_means(2);
+                if (tempClusters.Count() + clusters.Count() == numberOfClusters)
+                {
+                    tempClusters.Add(clusters[0]);
+                    tempClusters.Add(clusters[1]);
+                }
+                else
+                {
+                    var temp = clusters.OrderByDescending(m => m.itemsCluster.Count());
+                    tempClusters.Add(temp.Last());
+                    clients = temp.First().itemsCluster;
+                }
+            }
+            clusters = tempClusters.ToArray();
+        }
+        else
+        {
+            do_K_means(2);
+        }
+    }
+    public void do_K_means(int numberOfClusters)
+    {
+        clusters = new Cluster[numberOfClusters];
+        for (int i = 0; i < numberOfClusters; i++)
+        {
+            Random r = new Random();
+            Console.Write(clients.Count() - 1);
+            Client centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
+            clusters[i] = new Cluster(centroid.items, centroid);
+        }
+        findClusters();
+    }
         public void ReCalculateCentroids()
         {
             foreach(Cluster cluster in clusters)

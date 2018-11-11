@@ -16,9 +16,9 @@ namespace Allers
         [MTAThread]
         public static void Main()
         {
-			//Application.EnableVisualStyles();
-			//Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new PanelInicio());
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new PanelInicio());
 
 			Context ctx = new Context();
 			ctx.runApriori(2,50);
