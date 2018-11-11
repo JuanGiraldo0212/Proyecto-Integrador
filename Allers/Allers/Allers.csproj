@@ -78,6 +78,12 @@
     <Compile Include="PanelProductos.Designer.cs">
       <DependentUpon>PanelProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelVentas.Designer.cs">
+      <DependentUpon>PanelVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sale.cs" />
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PanelProductos.resx">
       <DependentUpon>PanelProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelVentas.resx">
+      <DependentUpon>PanelVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -15,6 +15,7 @@ namespace Allers
         public List<Sale> listSales = new List<Sale>();
         public List<Client> listClients = new List<Client>();
         public List<List<Item>> listTransactions = new List<List<Item>>();
+		public APriori apriori;
 
         public void loadDataClustering(int botTHSales)
         {
@@ -118,7 +119,7 @@ namespace Allers
 				ant.ForEach(x=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(x)).itemName+",");
 				line += "} ---> {";
 				con.ForEach(y=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(y)).itemName+",");
-				line += "}"+"Confianza: "+rule.Confidence+"\n";
+				line += "}"+"Confianza: "+rule.Confidence+"\n\n";
 				
 			}
 
@@ -130,16 +131,17 @@ namespace Allers
         {
             String line = "";
             loadData();
-                Console.WriteLine("Calculando");
+			Console.WriteLine("Se cargaron los datos");
+			apriori = new APriori();
                 cargarTransacciones();
-                List<List<string>> op = APriori.ItemsFrecuentes(transacciones, supp);
-
-                Console.WriteLine("Calculando reglas");
-                List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transacciones, op, trust);
+                Console.WriteLine("Se cargaron las transacciones");
+                List<List<string>> op = apriori.ItemsFrecuentes(transacciones, supp);
+                Console.WriteLine("Se procesaron los itemsets");
+                List<ReglaAsociacion> reglas = apriori.ReglasAsociacion(transacciones, op, trust);
 
                 line = convertRules(reglas);
 
-                Console.WriteLine(line);
+                Console.WriteLine(apriori.allRules.Count());
             
            
             return line;

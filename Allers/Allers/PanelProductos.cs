@@ -33,7 +33,8 @@ namespace Allers
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+			this.button1.Enabled = false;
+			Console.WriteLine("ok");
             if (comboBox1.SelectedItem.Equals("A-Priori"))
             {
                 var t = new Thread((ThreadStart)(() => {
@@ -41,6 +42,7 @@ namespace Allers
                     this.Invoke((MethodInvoker)delegate ()
                     {
                         richTextBox1.Text = line;
+						this.button1.Enabled = true;
                     });
 
                 }));

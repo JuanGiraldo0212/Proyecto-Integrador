@@ -15,6 +15,7 @@ namespace Allers
 	{
 		private PanelProductos productos;
 		private PanelClientes clientes;
+		private PanelVentas ventas;
         private Context contexto;
 		public PanelMenu()
 		{
@@ -98,5 +99,16 @@ namespace Allers
           //  t.SetApartmentState(ApartmentState.STA);
           //  t.Start();
         }
-    }
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			ventas = new PanelVentas(contexto.apriori);
+			ventas.Show();
+		}
+
+		private void PanelMenu_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			System.Windows.Forms.Application.Exit();
+		}
+	}
 }

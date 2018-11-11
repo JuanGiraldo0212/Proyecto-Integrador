@@ -7,7 +7,9 @@ using System.Text;
 
 public class APriori
 {
-    public static List<ReglaAsociacion> allRules;
+    public List<ReglaAsociacion> allRules;
+
+
 
 
     public static String PrintL(List<List<string>> op)
@@ -74,7 +76,7 @@ public class APriori
     }
 
 
-    public static List<List<string>> ItemsFrecuentes(List<List<string>> db, double supportThreshold)
+    public  List<List<string>> ItemsFrecuentes(List<List<string>> db, double supportThreshold)
     {
         //I.ForEach(x=>Console.WriteLine(x.ToString()));
         List<List<string>> L = new List<List<string>>(); //itemset frecuente
@@ -157,7 +159,7 @@ public class APriori
                    select list[i];
     }
 
-    public static List<ReglaAsociacion> ReglasAsociacion(List<List<string>> db, List<List<string>> L, double confidenceThreshold)
+    public List<ReglaAsociacion> ReglasAsociacion(List<List<string>> db, List<List<string>> L, double confidenceThreshold)
     {
          allRules = new List<ReglaAsociacion>();
 
@@ -191,4 +193,43 @@ public class APriori
 
         return (allRules);
     }
+
+	public String highUtility(List<Sale> sales, List<Item> items) {
+		String line = "";
+
+		if (allRules.Count == 0)
+		{
+			line = "Se debe ejecutar algun metodo de analisis de productos primero";
+		}
+		else {
+
+			foreach (var s in allRules) {
+
+				double val = 0;
+				List<String> names = new List<string>();
+
+				foreach (var o in s.X) {
+					var cons = sales.First(x => x.itemCode.Equals(o));
+					names.Add(items.First(x=> (x.itemCode+"").Equals(o)).itemName);
+					val += cons.price;
+				}
+
+				foreach (var o in s.Y)
+				{
+					var cons = sales.First(x => x.itemCode.Equals(o));
+					names.Add(items.First(x => (x.itemCode+"").Equals(o)).itemName);
+					val += cons.price;
+				}
+
+				line += "Los items: ";
+				names.ForEach(x=>line+=x+", ");
+				line += "generan una utilidad de: "+val+"\n\n";
+			}
+			
+
+		}
+
+		return line;
+
+	}
 }
