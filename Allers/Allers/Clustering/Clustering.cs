@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    class Clustering
-    {
+class Clustering
+{
 
-        public List<Client> clients = new List<Client>();
-        public Cluster[] clusters;
+    public List<Client> clients = new List<Client>();
+    public Cluster[] clusters;
     public Clustering(List<Client> clientsMain, int numberOfClusters, int clusteringMethod)
     {
         clients = clientsMain;
@@ -64,10 +64,10 @@ using System.Threading.Tasks;
         }
         findClusters();
     }
-        public void ReCalculateCentroids()
+    public void ReCalculateCentroids()
+    {
+        foreach (Cluster cluster in clusters)
         {
-            foreach(Cluster cluster in clusters)
-            {
             if (cluster.itemsCluster.Count() != 0)
             {
                 double[] datos = new double[cluster.centroid.Count()];
@@ -79,64 +79,63 @@ using System.Threading.Tasks;
             }
             else
             {
-                
+
 
             }
-            }
-            
         }
-        public double[] distances(Client cliente)
+
+    }
+    public double[] distances(Client cliente)
+    {
+        double[] distances = new double[clusters.Count()];
+        for (int i = 0; i < clusters.Count(); i++)
         {
-            double[] distances = new double[clusters.Count()];
-            for(int i = 0; i < clusters.Count(); i++)
+            Cluster cluster = clusters[i];
+            double sum = 0;
+            for (int j = 0; j < cluster.centroid.Length; j++)
             {
-                Cluster cluster = clusters[i];
-                double sum = 0;
-                for (int j = 0; j < cluster.centroid.Length; j++)
-                {
-                    sum += Math.Pow(cluster.centroid[j] - cliente.items[j], 2);
-                }
-                double distance = Math.Sqrt(sum);
-                distances[i] = distance;
+                sum += Math.Pow(cluster.centroid[j] - cliente.items[j], 2);
             }
-            return distances;
+            double distance = Math.Sqrt(sum);
+            distances[i] = distance;
         }
-        public void findClusters()
+        return distances;
+    }
+    public void findClusters()
+    {
+        bool changes = true;
+        while (changes)
         {
-            bool changes = true;
-            while (changes)
+            changes = false;
+            foreach (Client actual in clients)
             {
-                changes = false;
-                foreach (Client actual in clients)
+
+                bool asigned = false;
+                double[] d = distances(actual);
+                double minimum = d.Min();
+                for (int i = 0; i < d.Count() && !asigned; i++)
                 {
-                    
-                    bool asigned = false;
-                    double[] d = distances(actual);
-                    double minimum = d.Min();
-                    for(int i = 0; i < d.Count() && !asigned; i++)
+                    if (d[i] == minimum)
                     {
-                        if (d[i] == minimum)
+                        foreach (Cluster cluster in clusters)
                         {
-                            foreach(Cluster cluster in clusters)
-                            {
-                                if(clusters[i] != cluster)
+                            if (clusters[i] != cluster)
                                 cluster.itemsCluster.Remove(actual);
-                            }
-                            if(!clusters[i].itemsCluster.Contains(actual))
-                            {
-                                clusters[i].itemsCluster.Add(actual);
-                                changes = true;
-                                asigned = true;
-                                ReCalculateCentroids();
-                            }
+                        }
+                        if (!clusters[i].itemsCluster.Contains(actual))
+                        {
+                            clusters[i].itemsCluster.Add(actual);
+                            changes = true;
+                            asigned = true;
+                            ReCalculateCentroids();
                         }
                     }
                 }
-            Console.WriteLine("Hole");
-            
             }
-            
-            
-        }
-    }
+            Console.WriteLine("Hole");
 
+        }
+
+
+    }
+}

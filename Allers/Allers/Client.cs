@@ -16,7 +16,7 @@ namespace Allers
         public string PymntGruoup { get; set; }
         public double[] items { get; set; }
         public double Purchases { get; set; }
-
+        
         public Client() {}
 }
 }

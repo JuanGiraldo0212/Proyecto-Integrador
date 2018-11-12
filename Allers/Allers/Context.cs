@@ -11,6 +11,7 @@ namespace Allers
 {
     public class Context
     {
+        
         public List<Item> listItems = new List<Item>();
         public List<Sale> listSales = new List<Sale>();
         public List<Client> listClients = new List<Client>();

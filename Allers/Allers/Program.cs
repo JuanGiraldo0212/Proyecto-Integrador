@@ -18,11 +18,20 @@ namespace Allers
         {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+            clusterAnalysis();
+
+            /*
 			Application.Run(new PanelInicio());
 
 			Context ctx = new Context();
 			ctx.runApriori(2,50);
 			Console.WriteLine(ctx.apriori.highUtility(ctx.listSales, ctx.listItems));
+            */
+
+
+
+
+
             //escoger nucleo del pc
            // Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(3);
             //dar prioridad alta al nucleo
@@ -64,6 +73,35 @@ namespace Allers
         //    Console.WriteLine("CLIENTES ASIGNADOS A CLUSTERS:");
         //    Console.WriteLine(clustering.clusters.Sum(i => i.itemsCluster.Count()));
         //}
+
+        public static void clusterAnalysis()
+        {
+
+            Context contexto = new Context();
+            contexto.loadDataClustering(4000);
+
+            //Analisis 10 clientes 3 cluster
+            List<Client> lista10 = new List<Client>();
+            for(int i = 0; i < 10; i++)
+            {
+                lista10.Add(contexto.listClients.ElementAt(i));
+            }
+            /*
+            for(int j = 0; j < 100; j++)
+            {*/
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                Clustering cluster = new Clustering(lista10, 2, 0);
+                sw.Stop();
+                String tiempoPartido = sw.Elapsed.TotalMilliseconds.ToString();
+                Console.WriteLine(tiempoPartido);
+            //}
+
+            Console.WriteLine("Finalizo Beycker");
+
+            //Clustering cluster = new Clustering();
+        }
+
         public static void bruteForceAnalysis()
         {
             BruteForce mainBF = new BruteForce();
