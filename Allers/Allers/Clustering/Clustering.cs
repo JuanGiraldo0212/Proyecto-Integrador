@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class Clustering
+public class Clustering
 {
 
     public List<Client> clients = new List<Client>();
@@ -58,7 +58,7 @@ class Clustering
         for (int i = 0; i < numberOfClusters; i++)
         {
             Random r = new Random();
-            Console.Write(clients.Count() - 1);
+            //Console.Write(clients.Count() - 1);
             Client centroid = clients.ElementAt(r.Next(0, clients.Count() - 1));
             clusters[i] = new Cluster(centroid.items, centroid);
         }
@@ -115,7 +115,7 @@ class Clustering
                 double minimum = d.Min();
                 for (int i = 0; i < d.Count() && !asigned; i++)
                 {
-                    if (d[i] == minimum)
+                    if (d[i] == minimum && d.Where(l => l == 0).Count() != d.Count())
                     {
                         foreach (Cluster cluster in clusters)
                         {
@@ -132,7 +132,7 @@ class Clustering
                     }
                 }
             }
-            Console.WriteLine("Hole");
+            //Console.WriteLine("Hole");
 
         }
 

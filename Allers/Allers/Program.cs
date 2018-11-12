@@ -18,8 +18,16 @@ namespace Allers
         {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-            clusterAnalysis();
 
+            //escoger nucleo del pc
+            Process.GetCurrentProcess().ProcessorAffinity = new IntPtr(2);
+            //dar prioridad alta al nucleo
+
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+
+            clusterAnalysis();
+            
             /*
 			Application.Run(new PanelInicio());
 
@@ -28,6 +36,15 @@ namespace Allers
 			Console.WriteLine(ctx.apriori.highUtility(ctx.listSales, ctx.listItems));
             */
 
+
+
+            /*
+            Context contexto = new Context();
+            contexto.loadDataClustering(4000);
+
+            Clustering clustering = new Clustering(contexto.listClients, 3, 0);
+            Console.WriteLine("Termino");
+            */
 
 
 
@@ -79,23 +96,16 @@ namespace Allers
 
             Context contexto = new Context();
             contexto.loadDataClustering(4000);
-
-            //Analisis 10 clientes 3 cluster
-            List<Client> lista10 = new List<Client>();
-            for(int i = 0; i < 10; i++)
+            
+            for(int j = 0; j < 20; j++)
             {
-                lista10.Add(contexto.listClients.ElementAt(i));
-            }
-            /*
-            for(int j = 0; j < 100; j++)
-            {*/
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                Clustering cluster = new Clustering(lista10, 2, 0);
+                Clustering cluster = new Clustering(contexto.listClients, 3, 1);
                 sw.Stop();
                 String tiempoPartido = sw.Elapsed.TotalMilliseconds.ToString();
                 Console.WriteLine(tiempoPartido);
-            //}
+            }
 
             Console.WriteLine("Finalizo Beycker");
 

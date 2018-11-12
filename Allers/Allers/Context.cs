@@ -101,7 +101,7 @@ namespace Allers
                         try
                         {
                             listClients.First(k => k.CardCode.Equals(sale.cardCode)).items[i] += 1;
-                            Console.WriteLine("holi");
+                            //Console.WriteLine("holi");
                         }
                         catch { }
                     }

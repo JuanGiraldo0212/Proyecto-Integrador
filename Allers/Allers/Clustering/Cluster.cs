@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    class Cluster
+    public class Cluster
     {
         public List<Client> itemsCluster { get; set; }
         public double[] centroid { get; set; }

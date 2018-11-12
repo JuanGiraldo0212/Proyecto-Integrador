@@ -10,47 +10,43 @@ namespace FuerzaBrutaTest
     [TestClass]
     public class UnitTest1
     {
-        
+        /*
         [TestMethod]
         public void TestCargaCantidadElementos()
         {
-            /*
+            
              BruteForce bruta = new BruteForce();
              bruta.loadData();
              int resultadoCantidadArticulos = 18;
              int resultadoCantidadVentas = 149299;
 
-             //Assert
-             */
-            int i = 0;
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            while (i < 10000)
-            {
-                
-                i++;
-            }
-
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
-            
-            Assert.AreEqual(1, 1);
-            /*
+             
             Assert.AreEqual(bruta.getItems().Count(), resultadoCantidadArticulos);
             Assert.AreEqual(bruta.getSales().Count(), resultadoCantidadVentas);
-            */
+            
         }
-
+        */
         [TestMethod]
-        public void KMeans_VS_Bisecting()
+        public void TestClustering()
         {
             Context contexto = new Context();
-            contexto.loadDataClustering(2000);
-            
-            
-            //contexto.listClients.ElementAt(2);
+            contexto.loadDataClustering(4000);
+
+            for(int j = 0; j < 2; j++)
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                Clustering cluster = new Clustering(contexto.listClients, 3, 0);
+                sw.Stop();
+                String tiempoPartido = sw.Elapsed.TotalMilliseconds.ToString();
+                Console.WriteLine(tiempoPartido);
+            }
+
+            Console.WriteLine("Finalizo Beycker");
+
+            Assert.AreEqual(1, 1);
         }
+
 
             /*
             [TestMethod]
