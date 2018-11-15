@@ -102,7 +102,7 @@ namespace Allers
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			ventas = new PanelVentas(contexto.apriori);
+			ventas = new PanelVentas(contexto);
 			ventas.Show();
 		}
 

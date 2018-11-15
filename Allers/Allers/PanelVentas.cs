@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,9 +13,9 @@ namespace Allers
 {
 	public partial class PanelVentas : Form
 	{
-		private APriori context;
+		private Context context;
 
-		public PanelVentas(APriori ctx)
+		public PanelVentas(Context ctx)
 		{
 			InitializeComponent();
 			context = ctx;
@@ -23,7 +24,21 @@ namespace Allers
 
 		private void button1_Click(object sender, EventArgs e)
 		{
+			if (comboBox1.SelectedItem.Equals("High Utility"))
+			{
+				var t = new Thread((ThreadStart)(() => {
+					String line = context.runHighUtility();
+					this.Invoke((MethodInvoker)delegate ()
+					{
+						richTextBox1.Text = line;
+						this.button1.Enabled = true;
+					});
 
+				}));
+
+				t.Start();
+
+			}
 		}
 	}
 }

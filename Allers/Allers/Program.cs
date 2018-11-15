@@ -26,11 +26,11 @@ namespace Allers
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
             Thread.CurrentThread.Priority = ThreadPriority.Highest;
 
-            clusterAnalysis();
+            //clusterAnalysis();
             
-            /*
+            
 			Application.Run(new PanelInicio());
-
+			/*
 			Context ctx = new Context();
 			ctx.runApriori(2,50);
 			Console.WriteLine(ctx.apriori.highUtility(ctx.listSales, ctx.listItems));

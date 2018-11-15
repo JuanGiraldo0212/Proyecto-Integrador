@@ -120,7 +120,7 @@ namespace Allers
 				ant.ForEach(x=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(x)).itemName+",");
 				line += "} ---> {";
 				con.ForEach(y=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(y)).itemName+",");
-				line += "}"+"Confianza: "+rule.Confidence+"\n\n";
+				line += "}"+"\nConfianza: "+rule.Confidence+"\n\n";
 				
 			}
 
@@ -134,7 +134,7 @@ namespace Allers
             loadData();
 			Console.WriteLine("Se cargaron los datos");
 			apriori = new APriori();
-                cargarTransacciones();
+                //loadTransactions();
                 Console.WriteLine("Se cargaron las transacciones");
                 List<List<string>> op = apriori.ItemsFrecuentes(transacciones, supp);
                 Console.WriteLine("Se procesaron los itemsets");
@@ -147,6 +147,12 @@ namespace Allers
            
             return line;
         }
+
+
+		public String runHighUtility() {
+
+			return apriori.highUtility(listSales,listItems);
+		}
 
         public String runClustering(int clustersNumber, int botTHSales, int clusteringMethod)
         {
@@ -290,10 +296,11 @@ namespace Allers
                     listClients.Add(newClient);
                 }
             }
-            loadTransactions();
-            calculatePursaches();
+			cargarTransacciones();
+            //calculatePursaches();
             //Console.WriteLine(articulos.Count());
             //Console.WriteLine(ventas.Count());
+			/*
             for (int i = 0; i < listItems.Count(); i++)
             {
                 foreach (Sale sale in listSales)
@@ -310,6 +317,7 @@ namespace Allers
                 }
             }
             int h = 0;
+			*/
         }
         public void cleanData(double topTH, double botTH, int botTHSales)
         {
