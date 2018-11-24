@@ -17,6 +17,7 @@ namespace Allers
         public List<Client> listClients = new List<Client>();
         public List<List<Item>> listTransactions = new List<List<Item>>();
 		public APriori apriori;
+        public Clustering clustering;
 
         public void loadDataClustering(int botTHSales)
         {
@@ -158,7 +159,7 @@ namespace Allers
         {
             String line = "INFORME CLUSTERIZACIÓN POR K-MEANS\n\n";
             loadDataClustering(botTHSales);
-            Clustering clustering = new Clustering(listClients,clustersNumber, clusteringMethod);
+            clustering = new Clustering(listClients,clustersNumber, clusteringMethod);
             Cluster[] clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {
@@ -178,6 +179,34 @@ namespace Allers
                 line += "\n";
             }
             return line;
+        }
+        public List<List<List<String>>> doRecomendationsClustering()
+        {
+            String line = "RECOMENDACIONES: \n";
+            List<List<List<String>>> clustersRecomendations = new List<List<List<string>>>();
+            foreach (Cluster actual in clustering.clusters)
+            {
+                List<List<String>> clusterRecomendations = new List<List<string>>();
+                for (int i = 0; i < actual.itemsCluster.Count(); i++)
+                {
+                    List<String> clientRecomendation = new List<string>();
+                    Client client = actual.itemsCluster[i];
+                    clientRecomendation.Add(client.CardCode);
+                    line += client.CardCode + ":\n";
+                    for (int j = 0; j < actual.itemsCluster[i].items.Count(); j++)
+                    {
+                        if (actual.centroid[j] >= 1 && client.items[j] < actual.centroid[j] / 2)
+                        {
+                            clientRecomendation.Add(listItems.ElementAt(j).itemName);
+                            line += listItems.ElementAt(j).itemName + "\n";
+                        }
+                    }
+                    clusterRecomendations.Add(clientRecomendation);
+                    line += "\n";
+                }
+                clustersRecomendations.Add(clusterRecomendations);
+            }
+            return clustersRecomendations;
         }
 
         public List<List<string>> transacciones = new List<List<string>>();
@@ -396,6 +425,6 @@ namespace Allers
                 actual.Purchases = pursaches;
             }
         }
-
+       
     }
 }
