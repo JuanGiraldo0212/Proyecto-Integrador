@@ -57,7 +57,7 @@ namespace Allers
 
                         for(int i = 0; i < recomendaciones.Count; i++)
                         {
-                            listBoxRecomendaciones.Items.Add("Cluster # " + i);
+                            //listBoxRecomendaciones.Items.Add("Cluster # " + i);
                             for(int j = 0; j < recomendaciones.ElementAt(i).Count; j++)
                             {
                                 if(recomendaciones.ElementAt(i).ElementAt(j).Count != 1)
@@ -66,11 +66,16 @@ namespace Allers
                                     {
                                         if(k == 0)
                                         {
-                                            listBoxRecomendaciones.Items.Add("Recomendaciones para el cliente " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                            listBoxRecomendaciones.Items.Add("RECOMENDACIONES PARA EL CLIENTE " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                            listBoxRecomendaciones.Items.Add("");
                                         }
                                         else
                                         {
-                                            listBoxRecomendaciones.Items.Add(recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                            listBoxRecomendaciones.Items.Add("- " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                            if (k == recomendaciones.ElementAt(i).ElementAt(j).Count - 1)
+                                            {
+                                                listBoxRecomendaciones.Items.Add("");
+                                            }
                                         }
                                     }
                                 }
@@ -113,7 +118,7 @@ namespace Allers
 
                         for (int i = 0; i < recomendaciones.Count; i++)
                         {
-                            listBoxRecomendaciones.Items.Add("Cluster # " + i);
+                            //listBoxRecomendaciones.Items.Add("Cluster # " + i);
                             for (int j = 0; j < recomendaciones.ElementAt(i).Count; j++)
                             {
                                 if (recomendaciones.ElementAt(i).ElementAt(j).Count != 1)
@@ -122,11 +127,18 @@ namespace Allers
                                     {
                                         if (k == 0)
                                         {
-                                            listBoxRecomendaciones.Items.Add("Recomendaciones para el cliente " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                            listBoxRecomendaciones.Items.Add("RECOMENDACIONES PARA EL CLIENTE " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                            listBoxRecomendaciones.Items.Add("");
                                         }
                                         else
                                         {
-                                            listBoxRecomendaciones.Items.Add(recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                            listBoxRecomendaciones.Items.Add("- " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                            
+                                            if (k == recomendaciones.ElementAt(i).ElementAt(j).Count - 1)
+                                            {
+                                                listBoxRecomendaciones.Items.Add("");
+                                            }
+                                            
                                         }
                                     }
                                 }

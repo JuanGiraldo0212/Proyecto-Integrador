@@ -167,19 +167,21 @@ namespace Allers
             Cluster[] clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {
-                resultado[0] += "CLUSTER " + i + ":$#Elementos: " + clusters[i].itemsCluster.Count() + "$Clientes Pertenecientes:$";
+                resultado[0] += "CLUSTER " + i + ":$#Elementos: " + clusters[i].itemsCluster.Count() + "$Clientes Pertenecientes:$$";
                 foreach (Client actual in clusters[i].itemsCluster)
                 {
-                    resultado[0] += actual.CardCode + "$";
+                    resultado[0] += "- " + actual.CardCode + "$";
                 }
-                resultado[1] += "Compras Representativas del Cluster (Centroide):$";
+                resultado[0] += "$";
+                resultado[1] += "COMPRAS REPRESENTATIVAS DEL CLUSTER #" + i + " (Centroide):$$";
                 for (int j = 0; j < clusters[i].centroid.Count(); j++)
                 {
                     if (clusters[i].centroid[j] != 0)
                     {
-                        resultado[1] += listItems.ElementAt(j).itemName + "$";
+                        resultado[1] += "- " + listItems.ElementAt(j).itemName + "$";
                     }
                 }
+                resultado[1] += "$";
                 //line += "\n";
             }
 
