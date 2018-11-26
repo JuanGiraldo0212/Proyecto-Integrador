@@ -22,6 +22,10 @@ namespace Allers
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            //Beyckercito el mejorcito
+           //int coso =  contexto.clustering.clusters[0].itemsCluster.Count;
+
 			this.button1.Enabled = false;
             if(comboBox1.SelectedItem == null)
             {
@@ -31,32 +35,121 @@ namespace Allers
             else if (comboBox1.SelectedItem.Equals("Clustering K-means"))
             {
                 var t = new Thread((ThreadStart)(() => {
-                    String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 0);
+                   String[] line = contexto.runClusteringSEP(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 0);
                    this.Invoke((MethodInvoker)delegate ()
                     {
 						this.button1.Enabled = true;
-						richTextBox1.Text = line;
+                        //richTextBox1.Text = line;
+                        String[] clientesSeparados = line[0].Split('$');
+                        for (int i = 0; i < clientesSeparados.Length; i++)
+                        {
+                            listBoxClientes.Items.Add(clientesSeparados[i]);
+                        }
+
+                        String[] itemsSeparados = line[1].Split('$');
+
+                        for (int i = 0; i < itemsSeparados.Length; i++)
+                        {
+                            listBoxItems.Items.Add(itemsSeparados[i]);
+                        }
+
+                        List<List<List<String>>> recomendaciones = contexto.doRecomendationsClustering();
+
+                        for(int i = 0; i < recomendaciones.Count; i++)
+                        {
+                            listBoxRecomendaciones.Items.Add("Cluster # " + i);
+                            for(int j = 0; j < recomendaciones.ElementAt(i).Count; j++)
+                            {
+                                if(recomendaciones.ElementAt(i).ElementAt(j).Count != 1)
+                                {
+                                    for(int k = 0; k < recomendaciones.ElementAt(i).ElementAt(j).Count; k++)
+                                    {
+                                        if(k == 0)
+                                        {
+                                            listBoxRecomendaciones.Items.Add("Recomendaciones para el cliente " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                        }
+                                        else
+                                        {
+                                            listBoxRecomendaciones.Items.Add(recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
+                        pintarGraficoPastel();
                     });
 
                 }));
 
                 t.Start();
+                
 
             }
             else if (comboBox1.SelectedItem.Equals("Clustering Bisecting-K-means"))
             {
                 var t = new Thread((ThreadStart)(() => {
-                    String line = contexto.runClustering(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 1);
+                    String[] line = contexto.runClusteringSEP(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 1);
                     this.Invoke((MethodInvoker)delegate ()
                     {
                         this.button1.Enabled = true;
-                        richTextBox1.Text = line;
+                        //richTextBox1.Text = line;
+
+                        String[] clientesSeparados = line[0].Split('$');
+                        for(int i = 0; i < clientesSeparados.Length; i++)
+                        {
+                            listBoxClientes.Items.Add(clientesSeparados[i]);
+                        }
+
+                        String[] itemsSeparados = line[1].Split('$');
+
+                        for (int i = 0; i < itemsSeparados.Length; i++)
+                        {
+                            listBoxItems.Items.Add(itemsSeparados[i]);
+                        }
+                        
+                        List<List<List<String>>> recomendaciones = contexto.doRecomendationsClustering();
+
+                        for (int i = 0; i < recomendaciones.Count; i++)
+                        {
+                            listBoxRecomendaciones.Items.Add("Cluster # " + i);
+                            for (int j = 0; j < recomendaciones.ElementAt(i).Count; j++)
+                            {
+                                if (recomendaciones.ElementAt(i).ElementAt(j).Count != 1)
+                                {
+                                    for (int k = 0; k < recomendaciones.ElementAt(i).ElementAt(j).Count; k++)
+                                    {
+                                        if (k == 0)
+                                        {
+                                            listBoxRecomendaciones.Items.Add("Recomendaciones para el cliente " + recomendaciones.ElementAt(i).ElementAt(j).ElementAt(0));
+                                        }
+                                        else
+                                        {
+                                            listBoxRecomendaciones.Items.Add(recomendaciones.ElementAt(i).ElementAt(j).ElementAt(k));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        pintarGraficoPastel();
                     });
 
                 }));
 
                 t.Start();
+                
 
+            }
+        }
+
+        public void pintarGraficoPastel()
+        {
+            //chartCluster.Titles.Add("Lista Clusterings");
+            for(int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
+            {
+                chartClust.Series["s1"].Points.Add(new DevExpress.XtraCharts.SeriesPoint("Cluster " + i, contexto.clustering.clusters[i].itemsCluster.Count + ""));
+                //chartCluster.Series["s1"].Points.AddXY("Cluster" + i, contexto.clustering.clusters[i].itemsCluster.Count + "");
             }
         }
 
@@ -129,5 +222,6 @@ namespace Allers
             if(Convert.ToInt32(textBox1.Text) != 2)
             textBox1.Text = Convert.ToInt32(textBox1.Text) - 1 + "";
         }
+        
     }
 }

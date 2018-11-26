@@ -19,6 +19,9 @@ namespace Allers
 		public APriori apriori;
         public Clustering clustering;
 
+        //Cluster[] clusters;
+        //public List<List<string>> transaccionesClust = new List<List<string>>();
+
         public void loadDataClustering(int botTHSales)
         {
             listClients.Clear();
@@ -155,6 +158,34 @@ namespace Allers
 			return apriori.highUtility(listSales,listItems);
 		}
 
+        public String[] runClusteringSEP(int clustersNumber, int botTHSales, int clusteringMethod)
+        {
+            String[] resultado = new string[2];
+
+            loadDataClustering(botTHSales);
+            clustering = new Clustering(listClients, clustersNumber, clusteringMethod);
+            Cluster[] clusters = clustering.clusters;
+            for (int i = 0; i < clusters.Length; i++)
+            {
+                resultado[0] += "CLUSTER " + i + ":$#Elementos: " + clusters[i].itemsCluster.Count() + "$Clientes Pertenecientes:$";
+                foreach (Client actual in clusters[i].itemsCluster)
+                {
+                    resultado[0] += actual.CardCode + "$";
+                }
+                resultado[1] += "Compras Representativas del Cluster (Centroide):$";
+                for (int j = 0; j < clusters[i].centroid.Count(); j++)
+                {
+                    if (clusters[i].centroid[j] != 0)
+                    {
+                        resultado[1] += listItems.ElementAt(j).itemName + "$";
+                    }
+                }
+                //line += "\n";
+            }
+
+            return resultado;
+        }
+
         public String runClustering(int clustersNumber, int botTHSales, int clusteringMethod)
         {
             String line = "INFORME CLUSTERIZACIÓN POR K-MEANS\n\n";
@@ -195,7 +226,7 @@ namespace Allers
                     line += client.CardCode + ":\n";
                     for (int j = 0; j < actual.itemsCluster[i].items.Count(); j++)
                     {
-                        if (actual.centroid[j] >= 1 && client.items[j] < actual.centroid[j] / 2)
+                        if (actual.centroid[j] >= 1 && client.items[j] <= actual.centroid[j] / 2)
                         {
                             clientRecomendation.Add(listItems.ElementAt(j).itemName);
                             line += listItems.ElementAt(j).itemName + "\n";
@@ -425,6 +456,61 @@ namespace Allers
                 actual.Purchases = pursaches;
             }
         }
-       
+
+        /*
+        public String runClusterApriori(int supp, int trust, int clust, int clustersNumber, int botTHSales)
+        {
+            String line = "";
+
+            Console.WriteLine("Calculando");
+            runClustering(clustersNumber, botTHSales);
+            cargarTransaccionesClust(clust);
+            List<List<string>> op = APriori.ItemsFrecuentes(transaccionesClust, supp);
+
+            Console.WriteLine("Calculando reglas");
+            List<ReglaAsociacion> reglas = APriori.ReglasAsociacion(transaccionesClust, op, trust);
+
+            line = APriori.rules(reglas);
+            Console.WriteLine(line);
+
+
+            return line;
+        }
+
+        public void cargarTransaccionesClust(int cluster)
+        {
+            List<List<string>> transClust = new List<List<string>>();
+            var cons = listSales.GroupBy(x => x.docNum);
+            //cons.ToList().ForEach(x=>Console.WriteLine(x.Key));
+            foreach (var z in clusters[cluster].itemsCluster)
+            {
+                foreach (var s in cons)
+                {
+                    List<string> temp = new List<string>();
+                    foreach (var r in s)
+                    {
+                        try
+                        {
+                            if (r.cardCode.Equals(z.CardCode))
+                            {
+                                temp.Add(r.itemCode);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            //Console.WriteLine(r.itemCode);
+                        }
+
+                    }
+                    //Console.WriteLine(s.Key);
+                    //Console.WriteLine(temp.ToSt ring());
+                    transClust.Add(temp);
+                }
+            }
+
+            transaccionesClust = transClust;
+
+        }
+        */
     }
 }
