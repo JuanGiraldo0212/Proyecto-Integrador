@@ -16,7 +16,9 @@ namespace Allers
         public List<Sale> listSales = new List<Sale>();
         public List<Client> listClients = new List<Client>();
         public List<List<Item>> listTransactions = new List<List<Item>>();
-		public APriori apriori;
+        Cluster[] clusters = new Cluster[0];
+
+        public APriori apriori;
         public Clustering clustering;
 
         //Cluster[] clusters;
@@ -112,29 +114,66 @@ namespace Allers
                 }
             }
         }
+        
 
-		public String convertRules(List<ReglaAsociacion> rules) {
+        public void cargarTransaccionesClust(int cluster)
+        {
+            List<List<string>> transClust = new List<List<string>>();
+            var cons = listSales.GroupBy(x => x.docNum);
+            //cons.ToList().ForEach(x=>Console.WriteLine(x.Key));
+            foreach (var z in clusters[cluster].itemsCluster)
+            {
+                foreach (var s in cons)
+                {
+                    List<string> temp = new List<string>();
+                    foreach (var r in s)
+                    {
+                        try
+                        {
+                            
+                            if (r.cardCode.Trim().Equals(z.CardCode.Trim()))
+                            {
+                                temp.Add(r.itemCode);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            //Console.WriteLine(r.itemCode);
+                        }
+
+                    }
+                    //Console.WriteLine(s.Key);
+                    //Console.WriteLine(temp.ToSt ring());
+                    if (temp.Any())
+                    {
+                        transClust.Add(temp);
+                    }
+                    
+                }
+            }
+
+            transaccionesClust = transClust;
+
+        }
+        public String convertRules(ReglaAsociacion rule) {
 
 			String line = "";
-			foreach (var rule in rules) {
-
+			
 				var ant = rule.X;
 				var con = rule.Y;
-				line += "{";
 				ant.ForEach(x=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(x)).itemName+",");
-				line += "} ---> {";
+				line += "-";
 				con.ForEach(y=>line+=listItems.First(p=>p.itemCode==Convert.ToInt32(y)).itemName+",");
-				line += "}"+"\nConfianza: "+rule.Confidence+"\n\n";
 				
-			}
-
 			return line;
 
 
 		}
-        public String runApriori(int supp, int trust)
+
+        public List<List<string>> transaccionesClust = new List<List<string>>();
+
+        public List<ReglaAsociacion> runApriori(int supp, int trust)
         {
-            String line = "";
             loadData();
 			Console.WriteLine("Se cargaron los datos");
 			apriori = new APriori();
@@ -143,20 +182,96 @@ namespace Allers
                 List<List<string>> op = apriori.ItemsFrecuentes(transacciones, supp);
                 Console.WriteLine("Se procesaron los itemsets");
                 List<ReglaAsociacion> reglas = apriori.ReglasAsociacion(transacciones, op, trust);
-
-                line = convertRules(reglas);
-
-                Console.WriteLine(apriori.allRules.Count());
             
            
+            return reglas;
+        }
+
+        public List<ReglaAsociacion> runClusterApriori(int supp, int trust, int clust, int clustersNumber, int botTHSales, int clusteringMethod)
+        {
+           
+            Console.WriteLine("Calculando");
+            if (clusters.Count()==0)
+            {
+                runClustering(clustersNumber, botTHSales, clusteringMethod);
+            }
+
+            cargarTransaccionesClust(clust);
+            apriori = new APriori();
+            //loadTransactions();
+            Console.WriteLine("Se cargaron las transacciones");
+            List<List<string>> op = apriori.ItemsFrecuentes(transaccionesClust, supp);
+            Console.WriteLine("Se procesaron los itemsets");
+            List<ReglaAsociacion> reglas = apriori.ReglasAsociacion(transaccionesClust, op, trust);
+
+         
+
+            return reglas;
+        }
+        public String runHighUtility(double min, double supp)
+        {
+            if (apriori == null)
+            {
+                apriori = new APriori();
+            }
+            loadData();
+            Console.WriteLine("Se cargaron los datos");
+            String line = "";
+            List<List<string>> freq = apriori.ItemsFrecuentes(transacciones, supp).Where(x => x.Count > 1).ToList();
+            Console.WriteLine("Se generaron los frecuentes");
+            var cons = listSales.GroupBy(x => x.docNum);
+            foreach (var itemset in freq)
+            {
+                double utility = 0;
+                List<String> names = new List<string>();
+                List<String> usados = new List<String>();
+                foreach (var trans in cons)
+                {
+
+
+                    foreach (var vent in trans)
+                    {
+                        bool alguno = false;
+                        for (int i = 0; i < itemset.Count && !alguno; i++)
+                        {
+                            if (vent.itemCode.Equals(itemset[i]))
+                            {
+                                alguno = true;
+                                utility += vent.docTotal;
+                                if (!usados.Contains(itemset[i]))
+                                {
+
+                                    usados.Add(itemset[i]);
+                                    names.Add(listItems.First(x => x.itemCode == Convert.ToInt32(itemset[i])).itemName);
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+                if (utility >= min)
+                {
+
+                    line += "Los items: ";
+                    names.ForEach(x => line += x + ", ");
+                    line += " generan una utilidad de: $" + utility + "\n\n";
+
+                }
+
+            }
+
+
             return line;
         }
 
 
-		public String runHighUtility() {
-
-			return apriori.highUtility(listSales,listItems);
-		}
+       
 
         public String[] runClusteringSEP(int clustersNumber, int botTHSales, int clusteringMethod)
         {
@@ -164,7 +279,7 @@ namespace Allers
 
             loadDataClustering(botTHSales);
             clustering = new Clustering(listClients, clustersNumber, clusteringMethod);
-            Cluster[] clusters = clustering.clusters;
+            clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {
                 resultado[0] += "CLUSTER " + i + ":$#Elementos: " + clusters[i].itemsCluster.Count() + "$Clientes Pertenecientes:$";
@@ -191,7 +306,7 @@ namespace Allers
             String line = "INFORME CLUSTERIZACIÓN POR K-MEANS\n\n";
             loadDataClustering(botTHSales);
             clustering = new Clustering(listClients,clustersNumber, clusteringMethod);
-            Cluster[] clusters = clustering.clusters;
+            clusters = clustering.clusters;
             for (int i = 0; i < clusters.Length; i++)
             {
                 line += "CLUSTER " + i + ":\n#Elementos: " + clusters[i].itemsCluster.Count() + "\nClientes Pertenecientes:\n";

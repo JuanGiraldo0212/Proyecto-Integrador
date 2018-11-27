@@ -78,3 +78,33 @@ C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\FuerzaBrutaT
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.csproj.CopyComplete
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.dll
 C:\Users\hp\Source\Repos\JuanGiraldo0212\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.pdb
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\FuerzaBrutaTest.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\FuerzaBrutaTest.pdb
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Allers.exe
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraCharts.v18.2.UI.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraCharts.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.Utils.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.Data.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.Printing.v18.2.Core.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.Charts.v18.2.Core.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraEditors.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraCharts.v18.2.Wizard.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraBars.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\DevExpress.XtraPrinting.v18.2.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Allers.pdb
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Allers.exe.config
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.csprojAssemblyReference.cache
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.csproj.CoreCompileInputs.cache
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.csproj.CopyComplete
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.dll
+E:\Nueva carpeta\Proyecto-Integrador\Allers\FuerzaBrutaTest\obj\Debug\FuerzaBrutaTest.pdb

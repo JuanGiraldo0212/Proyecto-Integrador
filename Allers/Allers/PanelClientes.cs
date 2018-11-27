@@ -222,6 +222,22 @@ namespace Allers
             if(Convert.ToInt32(textBox1.Text) != 2)
             textBox1.Text = Convert.ToInt32(textBox1.Text) - 1 + "";
         }
-        
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.apriori1.setCont(contexto);
+            this.apriori1.setRules(contexto.runClusterApriori(5,0,Convert.ToInt32(textBox3.Text),Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text), 0));
+            this.apriori1.visReglas(0);
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

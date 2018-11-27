@@ -25,24 +25,27 @@ namespace Allers
         {
 
         }
-
+        /*
         public RichTextBox getRichbox()
         {
             return richTextBox1;
         }
-
+        */
         private void button1_Click(object sender, EventArgs e)
         {
 			this.button1.Enabled = false;
+            
 			Console.WriteLine("ok");
             if (comboBox1.SelectedItem.Equals("A-Priori"))
             {
                 var t = new Thread((ThreadStart)(() => {
-                   String line =contexto.runApriori(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
+                    
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        richTextBox1.Text = line;
-						this.button1.Enabled = true;
+                        this.apriori1.setRules(contexto.runApriori(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text)));
+                        this.apriori1.setCont(contexto);
+                        this.apriori1.visReglas(0);
+                        this.button1.Enabled = true;
                     });
 
                 }));
@@ -141,6 +144,11 @@ namespace Allers
         {
             if (Convert.ToDouble(textBox1.Text) != 0.0)
                 textBox2.Text = Convert.ToDouble(textBox2.Text) - 0.1 + "";
+        }
+
+        private void apriori1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

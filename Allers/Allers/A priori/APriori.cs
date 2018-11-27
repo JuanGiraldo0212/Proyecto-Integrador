@@ -99,7 +99,7 @@ public class APriori
             {
 
                 double supp = FindSupport(itemset, db);
-
+                Console.WriteLine(supp);
                 if (supp >= supportThreshold)
                 {
                     Li.Add(itemset);
@@ -109,6 +109,7 @@ public class APriori
 
 
             Ci.Clear();
+
             //Console.WriteLine(PrintL(Li));
             List<List<string>> temp = CombinacionesApriori(Li);
             //Console.WriteLine(temp.Count);
@@ -117,8 +118,9 @@ public class APriori
             //temp.ForEach(x => Console.WriteLine(x.ToString()));
 
             //Console.WriteLine(temp.ToString());
-            Ci.AddRange(temp);
-
+            // Ci.AddRange(temp);
+            Ci=temp;
+            Console.WriteLine(k);
             k += 1;
         }
 

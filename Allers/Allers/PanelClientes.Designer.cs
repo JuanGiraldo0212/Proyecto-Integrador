@@ -1,4 +1,6 @@
-﻿namespace Allers
+﻿using DevExpress.XtraCharts;
+
+namespace Allers
 {
 	partial class PanelClientes
 	{
@@ -29,9 +31,9 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelClientes));
-            DevExpress.XtraCharts.SimpleDiagram3D simpleDiagram3D1 = new DevExpress.XtraCharts.SimpleDiagram3D();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.Pie3DSeriesView pie3DSeriesView1 = new DevExpress.XtraCharts.Pie3DSeriesView();
+            DevExpress.XtraCharts.SimpleDiagram3D simpleDiagram3D3 = new DevExpress.XtraCharts.SimpleDiagram3D();
+            Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Pie3DSeriesView pie3DSeriesView3 = new DevExpress.XtraCharts.Pie3DSeriesView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -46,14 +48,17 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBoxRecomendaciones = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.apriori1 = new Allers.apriori();
             ((System.ComponentModel.ISupportInitialize)(this.chartClust)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3D1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pie3DSeriesView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -89,7 +94,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(76, 547);
+            this.button1.Location = new System.Drawing.Point(21, 484);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 57);
             this.button1.TabIndex = 2;
@@ -131,19 +136,19 @@
             // 
             // chartClust
             // 
-            simpleDiagram3D1.RotationMatrixSerializable = "0.94605218535434;-0.00290259628665491;0.324001292468245;0;0.126015450969839;0.924" +
+            simpleDiagram3D3.RotationMatrixSerializable = "0.94605218535434;-0.00290259628665491;0.324001292468245;0;0.126015450969839;0.924" +
     "530885061271;-0.359670333339723;0;-0.29850522391269;0.381096073848362;0.87502023" +
     "6219839;0;0;0;0;1";
-            this.chartClust.Diagram = simpleDiagram3D1;
+            this.chartClust.Diagram = simpleDiagram3D3;
             this.chartClust.Legend.Name = "Default Legend";
             this.chartClust.Location = new System.Drawing.Point(365, 12);
             this.chartClust.Name = "chartClust";
             this.chartClust.PaletteName = "Mixed";
-            series1.LegendTextPattern = "{A} - {V}";
-            series1.Name = "s1";
-            series1.View = pie3DSeriesView1;
+            series3.LegendTextPattern = "{A} - {V}";
+            series3.Name = "s1";
+            series3.View = pie3DSeriesView3;
             this.chartClust.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
+        series3};
             this.chartClust.Size = new System.Drawing.Size(495, 588);
             this.chartClust.TabIndex = 8;
             // 
@@ -168,6 +173,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(881, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -214,6 +220,56 @@
             this.listBoxRecomendaciones.Size = new System.Drawing.Size(434, 524);
             this.listBoxRecomendaciones.TabIndex = 12;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.apriori1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(469, 559);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::Allers.Properties.Resources.b11;
+            this.button4.Location = new System.Drawing.Point(21, 541);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(237, 52);
+            this.button4.TabIndex = 3;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Image = global::Allers.Properties.Resources.txt;
+            this.label1.Location = new System.Drawing.Point(29, 472);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "                                ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(32, 498);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(35, 20);
+            this.textBox3.TabIndex = 1;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // apriori1
+            // 
+            this.apriori1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("apriori1.BackgroundImage")));
+            this.apriori1.Location = new System.Drawing.Point(-4, 6);
+            this.apriori1.Name = "apriori1";
+            this.apriori1.Size = new System.Drawing.Size(494, 568);
+            this.apriori1.TabIndex = 0;
+            // 
             // PanelClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,6 +277,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1370, 609);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.chartClust);
             this.Controls.Add(this.button3);
@@ -232,14 +289,13 @@
             this.Name = "PanelClientes";
             this.Text = "PanelClientes";
             this.Load += new System.EventHandler(this.PanelClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3D1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pie3DSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartClust)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +317,10 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListBox listBoxRecomendaciones;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox3;
+        private apriori apriori1;
     }
 }

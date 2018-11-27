@@ -27,7 +27,7 @@ namespace Allers
 			if (comboBox1.SelectedItem.Equals("High Utility"))
 			{
 				var t = new Thread((ThreadStart)(() => {
-					String line = context.runHighUtility();
+					String line = context.runHighUtility(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
 					this.Invoke((MethodInvoker)delegate ()
 					{
 						richTextBox1.Text = line;
@@ -40,5 +40,10 @@ namespace Allers
 
 			}
 		}
-	}
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
